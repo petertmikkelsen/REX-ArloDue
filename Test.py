@@ -21,7 +21,7 @@ for i in range(4):
   
   print(arlo.go_diff(64, 70, 1, 1))
   
-  sleep(2.35)
+  sleep(2.4)
 
   print(arlo.stop())
   break
@@ -40,7 +40,7 @@ for i in range(4):
   
   sleep(1) #wait before new command
 
-print(arlo.go_diff(42, 46, 1, 0))
+#print(arlo.go_diff(42, 46, 1, 0))
 
 # Wait a bit while robot moves forward
 sleep(0.2)
