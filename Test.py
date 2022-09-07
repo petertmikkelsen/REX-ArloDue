@@ -12,7 +12,7 @@ leftSpeed = 0
 rightSpeed = 74
 print(arlo.go_diff(leftSpeed, rightSpeed, 1, 1))
 
-sleep(6.5)
+sleep(6.4)
 
 if (True):
   # send a go_diff command to drive forward
