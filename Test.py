@@ -40,10 +40,12 @@ for i in range(4):
   
   sleep(1) #wait before new command
 
-print("Finished")
+print(arlo.go_diff(42, 46, 1, 0))
 
+# Wait a bit while robot moves forward
+sleep(0.2)
+
+# send a stop command
+print(arlo.stop())
   
-
-
-
 print("Finished")
