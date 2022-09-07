@@ -12,7 +12,7 @@ print("Running ...")
 # send a go_diff command to drive forward
 leftSpeed = 42
 rightSpeed = 46
-print(arlo.go_diff(leftSpeed, rightSpeed, 1, 0))
+print(arlo.go_diff(leftSpeed, rightSpeed, 0, 1))
 
 # Wait a bit while robot moves forward
 sleep(0.1)
