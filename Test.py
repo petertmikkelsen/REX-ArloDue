@@ -13,7 +13,7 @@ for i in range(4):
 
   print(arlo.stop())
 
-  sleep(1)
+  sleep(1) #wait before new command
 
   # send a go_diff command to drive forward
   leftSpeed = 42
@@ -25,5 +25,7 @@ for i in range(4):
 
   # send a stop command
   print(arlo.stop())
+  
+  sleep(1) #wait before new command
 
 print("Finished")
