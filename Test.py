@@ -7,14 +7,14 @@ arlo = robot.Robot()
 
 print("Running ...")
 for i in range(4):
-  print(arlo.go_diff(64, 69, 1, 1))
+  print(arlo.go_diff(64, 69, 0, 0))
   
   sleep(2.3)
 
   print(arlo.stop())
-  break
+  
   sleep(1) #wait before new command
-
+  break
   # send a go_diff command to drive forward
   leftSpeed = 42
   rightSpeed = 46
