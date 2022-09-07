@@ -7,7 +7,7 @@ arlo = robot.Robot()
 
 print("Running ...")
 
-print(arlo.go_diff(64, 69))
+print(arlo.go_diff(64, 69, 1, 1))
 
 sleep(2.3)
 
@@ -28,7 +28,7 @@ print(arlo.stop())
 
 sleep(1)
 
-print(arlo.go_diff(64, 69))
+print(arlo.go_diff(64, 69, 1, 1))
 
 sleep(2.3)
 
