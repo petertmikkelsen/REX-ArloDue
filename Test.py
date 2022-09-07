@@ -21,7 +21,7 @@ for i in range(4):
   
   print(arlo.go_diff(64, 70, 1, 1))
   
-  sleep(2.5)
+  sleep(2.45)
 
   print(arlo.stop())
   break
