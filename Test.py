@@ -6,16 +6,18 @@ import robot
 arlo = robot.Robot()
 
 print("Running ...")
+
+print(arlo.go_diff(42, 46, 0, 1))
+
+# Wait a bit while robot moves forward
+sleep(0.2)
+
+# send a stop command
+print(arlo.stop())
+
+sleep(1) #wait before new command
+
 for i in range(4):
-  print(arlo.go_diff(42, 46, 0, 1))
-
-  # Wait a bit while robot moves forward
-  sleep(0.2)
-
-  # send a stop command
-  print(arlo.stop())
-
-  sleep(1) #wait before new command
   
   print(arlo.go_diff(64, 69, 1, 1))
   
@@ -31,7 +33,7 @@ for i in range(4):
   print(arlo.go_diff(leftSpeed, rightSpeed, 1, 0))
 
   # Wait a bit while robot moves forward
-  sleep(1.1)
+  sleep(0.9)
 
   # send a stop command
   print(arlo.stop())
