@@ -15,7 +15,7 @@ sleep(6)
 
 print(arlo.stop())
 
-sleep(0.2)
+sleep(1)
 
 # send a go_diff command to drive forward
 leftSpeed = 90
