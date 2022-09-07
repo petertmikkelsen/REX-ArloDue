@@ -6,7 +6,7 @@ import robot
 arlo = robot.Robot()
 
 print("Running ...")
-for i in range(4)
+for i in range(4):
   print(arlo.go_diff(64, 69, 1, 1))
 
   sleep(2.3)
