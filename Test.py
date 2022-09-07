@@ -7,9 +7,9 @@ arlo = robot.Robot()
 
 print("Running ...")
 for i in range(4):
-  print(arlo.go_diff(64, 69, 1, 1))
+  print(arlo.go_diff(42, 46, 1, 1))
   
-  sleep(2.3)
+  sleep(3.45)
 
   print(arlo.stop())
   break
