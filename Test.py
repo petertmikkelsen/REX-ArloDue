@@ -20,7 +20,7 @@ if (True):
   rightSpeed = 45
   print(arlo.go_diff(leftSpeed, rightSpeed, 1, 1))
 
-  sleep(6.2)
+  sleep(6.1)
 
 print(arlo.stop())
   
