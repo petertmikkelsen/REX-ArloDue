@@ -24,7 +24,7 @@ for i in range(4):
   sleep(2.3)
 
   print(arlo.stop())
-  
+  break
   sleep(1) #wait before new command
   
   # send a go_diff command to drive forward
