@@ -20,7 +20,7 @@ print(arlo.stop())
   
 sleep(1) #wait before new command
   
-print(arlo.go_diff(64, 70, 1, 1))
+print(arlo.go_diff(64, 71, 1, 1))
   
 sleep(2.45)
 
