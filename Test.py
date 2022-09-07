@@ -9,10 +9,10 @@ print("Running ...")
 
 # send a go_diff command to drive forward
 leftSpeed = 0
-rightSpeed = 74
+rightSpeed = 45
 print(arlo.go_diff(leftSpeed, rightSpeed, 1, 1))
 
-sleep(6)
+sleep(10)
 
 if (True):
   # send a go_diff command to drive forward
