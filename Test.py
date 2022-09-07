@@ -19,7 +19,7 @@ sleep(1) #wait before new command
 
 for i in range(4):
   
-  print(arlo.go_diff(64, 69, 1, 1))
+  print(arlo.go_diff(64, 70, 1, 1))
   
   sleep(2.3)
 
