@@ -14,7 +14,7 @@ rightSpeed = 46
 print(arlo.go_diff(leftSpeed, rightSpeed, 1, 0))
 
 # Wait a bit while robot moves forward
-sleep(1.1)
+sleep(1)
 
 print(arlo.stop())
 
