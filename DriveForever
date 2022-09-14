@@ -48,6 +48,7 @@ while(True):
     arlo.Turn(lastturn) #turn left or right, next time this is called turn the other direction
     lastturn = not(lastturn)
   elif not (driving):
+    print("no objects spotted, driving forward")
     driving = True
     arlo.Forward(compensate = True, stop = False)
     #print(arlo.go_diff(64, 70, 1, 1))
