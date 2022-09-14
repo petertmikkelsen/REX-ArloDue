@@ -10,41 +10,41 @@ lastturn = True #variable for when the robot should turn any direction (left or 
 driving = False
 
 while(True):
-  #arlo.Forward(compensate = True)
-  pings = [] #front, back ,left, right
+  pings = [] #front, back, left, right
   for i in range(4):
     pings.append(arlo.read_sensor(i))
     sleep(0.05)
   print(pings)
-  pings = [x<1500 for x in pings]
-  if pings[2] and not pings[3]:
+  pings = [x<1000 for x in pings]
+  if pings[2] and not pings[3]: #left has object, right has no object
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn(False)
-  elif pings[3] and not pings[2]:
+    arlo.Turn(False) #turn right
+  elif pings[3] and not pings[2]: #right has object, left has no object
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn()
-  elif pings[0] and pings[2] and pings[3]:
+    arlo.Turn() #turn left
+  elif pings[0] and pings[2] and pings[3]: #all 3 front sensors see objects
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn(degrees = 180)       
-  elif pings[0]:
+    arlo.Turn(degrees = 180) #turn around      
+  elif pings[0]: # object in front, not to the sides
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn(lastturn)
+    arlo.Turn(lastturn) #turn left or right, next time this is called turn the other direction
     lastturn = not(lastturn)
   elif not (driving):
     driving = True
-    print(arlo.go_diff(64, 70, 1, 1))
+    arlo.Forward(compensate = True, stop = False)
+    #print(arlo.go_diff(64, 70, 1, 1))
     sleep(0.1)
   
   
