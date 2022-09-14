@@ -15,7 +15,9 @@ while(True):
     pings.append(arlo.read_sensor(i))
     sleep(0.05)
   print(pings)
-  pings = [x<1000 for x in pings]
+  pings[0] = (pings[0] < 750)
+  pings[2] = (pings[2] < 500)
+  pings[2] = (pings[3] < 500)
   if pings[2] and not pings[3]: #left has object, right has no object
     if (driving):
       arlo.stop()
