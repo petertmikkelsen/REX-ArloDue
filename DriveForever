@@ -32,13 +32,15 @@ while(True):
       driving = False
       sleep(0.1)
     arlo.Turn() #turn left
-  elif pings[0] or (pings[2] and pings[3]): #all 3 front sensors see objects
+  elif pings[2] and pings[3]: #all 3 front sensors see objects
+    print("tunnel or wall detected, turning around")
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
     arlo.Turn(degrees = 180) #turn around      
   elif pings[0]: # object in front, not to the sides
+    print("object ahead spotted, turning to the side")
     if (driving):
       arlo.stop()
       driving = False
