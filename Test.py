@@ -17,6 +17,7 @@ for k in range(10):
   for i in range(4):
     pings.append(arlo.read_sensor(i))
     sleep(0.05)
+  print(pings)
   pings = [x<1500 for x in pings]
   if pings[2] and not pings[3]:
     arlo.Turn(False)
