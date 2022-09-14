@@ -14,9 +14,9 @@ while(True):
   for i in range(4):
     pings.append(arlo.read_sensor(i))
     sleep(0.05)
-  pings[0] = (pings[0] < 750)
-  pings[2] = (pings[2] < 500)
-  pings[3] = (pings[3] < 500)
+  pings[0] = (pings[0] < 350)
+  pings[2] = (pings[2] < 350)
+  pings[3] = (pings[3] < 350)
   if pings[2] and not pings[3]: #left has object, right has no object
     print("detected object to the left, turning right")
     if (driving):
