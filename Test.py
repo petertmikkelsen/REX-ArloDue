@@ -10,6 +10,9 @@ lastturn = True #variable for when the robot should turn any direction (left or 
 for k in range(10):
   #arlo.Forward(compensate = True)
   print(arlo.go_diff(64, 70, 1, 1))
+  sleep(2.45)
+  print(arlo.stop())
+  sleep(0.1)
   pings = [] #front, back ,left, right
   for i in range(4):
     pings.append(arlo.read_sensor(i))
