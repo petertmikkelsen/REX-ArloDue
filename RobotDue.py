@@ -254,5 +254,5 @@ class Robot(object):
         """OBSOLETE: turntime is the amount of miliseconds used in the step_rotate_left and 
         step_rotate_right commands."""
         cmd='y' + str(turntime) + '\n'
-        return self.send_command(cmd) #this is a test wawaaw
+        return self.send_command(cmd) #this is a test wawaaw, oasjd
         
