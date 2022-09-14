@@ -23,14 +23,14 @@ while(True):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn(False) #turn right
+    arlo.Turn(False, degrees = 45) #turn right
   elif pings[2] and not pings[1]: #right has object, left has no object
     print("detected object to the right, turning left")
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn() #turn left
+    arlo.Turn(degrees = 45) #turn left
   elif pings[1] and pings[2]: #all 3 front sensors see objects
     print("tunnel or wall detected, turning around")
     if (driving):
@@ -44,7 +44,7 @@ while(True):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn(bool(random.getrandbits(1))) #turn left or right randomly
+    arlo.Turn(bool(random.getrandbits(1)), degrees = 45) #turn left or right randomly
   elif not (driving):
     print("no objects spotted, driving forward")
     driving = True
