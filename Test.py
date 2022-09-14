@@ -11,7 +11,7 @@ for k in range(10):
   arlo.Forward(compensate = True)
   pings = [] #front, back ,left, right
   for i in range(4):
-    pings.append(arlo.read_sensor(i)
+    pings.append(arlo.read_sensor(i))
     sleep(0.05)
   pings = [x<1500 for x in pings]
   if pings[2] and not pings[3]:
