@@ -140,7 +140,7 @@ class Robot(object):
             sleep(0.15)
             print(self.stop())
             sleep(0.1) #wait .1 second before next command
-        if distance <= 0:  
+        if distance > 0:  
             print(self.go_diff(powerLeft, powerRight, 1, 1))
             if stop:
                 sleep(2.45*distance)
