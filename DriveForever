@@ -1,11 +1,11 @@
 from time import sleep
 
+import random
+
 import RobotDue
 
 # Create a robot object and initialize
 arlo = RobotDue.Robot()
-
-lastturn = True #variable for when the robot should turn any direction (left or right)
 
 driving = False
 
@@ -39,13 +39,12 @@ while(True):
       sleep(0.1)
     arlo.Turn(degrees = 180) #turn around      
   elif pings[0]: # object in front, not to the sides
-    print("object ahead spotted, turning to the side")
+    print("object ahead spotted, turning left or right randomly")
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
-    arlo.Turn(lastturn) #turn left or right, next time this is called turn the other direction
-    lastturn = not(lastturn)
+    arlo.Turn(bool(random.getrandbits(1))) #turn left or right randomly
   elif not (driving):
     print("no objects spotted, driving forward")
     driving = True
