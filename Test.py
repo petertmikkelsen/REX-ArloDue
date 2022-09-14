@@ -1,9 +1,9 @@
 from time import sleep
 
-import robot
+import RobotDue
 
 # Create a robot object and initialize
-arlo = robot.Robot()
+arlo = RobotDue.Robot()
 
 print("Running ...")
 
