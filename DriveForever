@@ -17,7 +17,7 @@ while(True):
   pings[0] = (pings[0] < 500)#front
   pings[1] = (pings[1] < 500)#left
   pings[2] = (pings[2] < 500)#right
-  if pings[2] and not pings[3]: #left has object, right has no object
+  if pings[1] and not pings[2]: #left has object, right has no object
     print("detected object to the left, turning right")
     if (driving):
       arlo.stop()
