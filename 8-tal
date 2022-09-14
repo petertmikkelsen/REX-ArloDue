@@ -12,14 +12,14 @@ leftSpeed = 0
 rightSpeed = 45
 print(arlo.go_diff(leftSpeed, rightSpeed, 1, 1))
 
-sleep(12)
+sleep(11.7)
 
 # send a go_diff command to drive forward
 leftSpeed = 90
 rightSpeed = 45
 print(arlo.go_diff(leftSpeed, rightSpeed, 1, 1))
 
-sleep(6.2)
+sleep(6.1)
 
 print(arlo.stop())
   
