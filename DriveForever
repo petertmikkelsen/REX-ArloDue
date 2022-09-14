@@ -13,7 +13,7 @@ while(True):
   pings = [] #front, left, right
   for i in [0, 2, 3]:
     pings.append(arlo.read_sensor(i))
-    sleep(0.05)
+    sleep(0.01)
   pings[0] = (pings[0] < 500)#front
   pings[1] = (pings[1] < 350)#left
   pings[2] = (pings[2] < 350)#right
