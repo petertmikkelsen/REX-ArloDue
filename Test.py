@@ -5,7 +5,7 @@ import RobotDue
 # Create a robot object and initialize
 arlo = RobotDue.Robot()
 
-arlo.Forward() #Go
+arlo.Forward(compensate=True) #Go
   
   
 print("Finished")
