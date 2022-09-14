@@ -5,23 +5,23 @@ import RobotDue
 # Create a robot object and initialize
 arlo = RobotDue.Robot()
 
-print("Running ...")
+lastturn = True #variable for when the robot should turn any direction (left or right)
 
-print("Front sensor = ", arlo.read_front_ping_sensor())
-sleep(0.041)
-
-# request to read Back sonar ping sensor
-print("Back sensor = ", arlo.read_back_ping_sensor())
-sleep(0.041)
-
-# request to read Right sonar ping sensor
-print("Right sensor = ", arlo.read_right_ping_sensor())
-sleep(0.041)
-
-# request to read Left sonar ping sensor
-print("Left sensor = ", arlo.read_left_ping_sensor())
-sleep(0.041)
-
-print(arlo.stop())
+for k in range(10):
+  arlo.Forward(compensate = True)
+  pings = [] #front, back ,left, right
+  for i in range(4):
+    pings.append(arlo.read_sensor(i)
+    sleep(0.05)
+  pings = [x<1500 for x in pings]
+  if pings[2] and not pings[3]:
+    arlo.Turn(False)
+  if pings[3] and not pings[2]:
+    arlo.Turn()
+  if pings[0] and pings[2] and pings[3]:
+    arlo.Turn(degrees = 180)       
+  if pings[0]:
+    arlo.Turn(lastturn)
+    lastturn = not(lastturn)
   
 print("Finished")
