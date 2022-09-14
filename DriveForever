@@ -10,13 +10,13 @@ arlo = RobotDue.Robot()
 driving = False
 
 while(True):
-  pings = [] #front, back, left, right
-  for i in range(4):
+  pings = [] #front, left, right
+  for i in [0, 2, 3]:
     pings.append(arlo.read_sensor(i))
     sleep(0.05)
-  pings[0] = (pings[0] < 350)
-  pings[2] = (pings[2] < 350)
-  pings[3] = (pings[3] < 350)
+  pings[0] = (pings[0] < 500)#front
+  pings[1] = (pings[1] < 500)#left
+  pings[2] = (pings[2] < 500)#right
   if pings[2] and not pings[3]: #left has object, right has no object
     print("detected object to the left, turning right")
     if (driving):
@@ -24,14 +24,14 @@ while(True):
       driving = False
       sleep(0.1)
     arlo.Turn(False) #turn right
-  elif pings[3] and not pings[2]: #right has object, left has no object
+  elif pings[2] and not pings[1]: #right has object, left has no object
     print("detected object to the right, turning left")
     if (driving):
       arlo.stop()
       driving = False
       sleep(0.1)
     arlo.Turn() #turn left
-  elif pings[2] and pings[3]: #all 3 front sensors see objects
+  elif pings[1] and pings[2]: #all 3 front sensors see objects
     print("tunnel or wall detected, turning around")
     if (driving):
       arlo.stop()
@@ -50,7 +50,7 @@ while(True):
     driving = True
     arlo.Forward(compensate = True, stop = False)
     #print(arlo.go_diff(64, 70, 1, 1))
-    sleep(0.1)
+    sleep(0.05)
   
   
 print("Finished")
