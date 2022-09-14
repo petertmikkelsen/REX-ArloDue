@@ -135,7 +135,7 @@ class Robot(object):
 
     def Forward(self, distance = 1, powerLeft = 64, powerRight = 70, compensate = False, stop = True):
         """drives forward. unless otherwise specified, will drive 1 meter, with compensation designed for ArloDue"""  
-        if compensate:
+        if compensate: #for some reason this might not work
             print(self.go_diff(42, 46, 0, 1))
             sleep(0.15)
             print(self.stop())
