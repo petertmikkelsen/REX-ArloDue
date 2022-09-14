@@ -133,7 +133,7 @@ class Robot(object):
 
     ### MOVEMENT FOR ARLO DUE
 
-    def Forward(self, distance = 1, powerLeft = 64, powerRight = 70, compensate = True):
+    def Forward(self, distance = 1, powerLeft = 64, powerRight = 70, compensate = False):
         """drives forward. unless otherwise specified, will drive 1 meter, with compensation designed for ArloDue"""  
         if compensate:
             print(self.go_diff(42, 46, 0, 1))
