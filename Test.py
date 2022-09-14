@@ -7,7 +7,7 @@ arlo = RobotDue.Robot()
 
 lastturn = True #variable for when the robot should turn any direction (left or right)
   
-for k in range(10):
+while(True):
   #arlo.Forward(compensate = True)
   pings = [] #front, back ,left, right
   for i in range(4):
