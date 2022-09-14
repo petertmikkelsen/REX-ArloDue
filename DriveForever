@@ -32,7 +32,7 @@ while(True):
       driving = False
       sleep(0.1)
     arlo.Turn() #turn left
-  elif pings[0] and pings[2] and pings[3]: #all 3 front sensors see objects
+  elif pings[0] or (pings[2] and pings[3]): #all 3 front sensors see objects
     if (driving):
       arlo.stop()
       driving = False
