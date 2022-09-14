@@ -14,7 +14,6 @@ while(True):
   for i in range(4):
     pings.append(arlo.read_sensor(i))
     sleep(0.05)
-  print(pings)
   pings[0] = (pings[0] < 750)
   pings[2] = (pings[2] < 500)
   pings[3] = (pings[3] < 500)
