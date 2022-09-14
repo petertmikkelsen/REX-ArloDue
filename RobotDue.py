@@ -181,6 +181,8 @@ class Robot(object):
             if stop:
                 print(self.stop())
 
+    def pings(self):
+        return [self.read_sensor(0), self.read_sensor(1), self.read_sensor(2), self.read_sensor(3)] #front, back, left, right
 
     ### OBSOLETE STUFF
         
