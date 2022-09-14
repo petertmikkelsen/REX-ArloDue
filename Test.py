@@ -8,7 +8,8 @@ arlo = RobotDue.Robot()
 lastturn = True #variable for when the robot should turn any direction (left or right)
 
 for k in range(10):
-  arlo.Forward(compensate = True)
+  #arlo.Forward(compensate = True)
+  print(self.go_diff(64, 70, 1, 1))
   pings = [] #front, back ,left, right
   for i in range(4):
     pings.append(arlo.read_sensor(i))
