@@ -38,6 +38,6 @@ def resample(samples):
 
 #resample(uniform(1000))
 before = time.time()
-resample(np.random.normal(5, 4, 1000))
+resample(np.random.normal(5, 4, 10000))
 after = time.time()
 print(after-before)
