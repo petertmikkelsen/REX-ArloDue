@@ -8,4 +8,5 @@ arlo = RobotDue.Robot()
 # arlo.Forward(compensate=True, distance=2) #Go
 # print("Finished")
 
-print(arlo.read_front_ping_sensor())
+for i in range(5):
+  print(i + ":" + arlo.read_front_ping_sensor())
