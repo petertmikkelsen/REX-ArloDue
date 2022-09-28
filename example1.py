@@ -52,6 +52,14 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
 
 
     if (type(ids) is not type(None)):
+
+        cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
+        distCoeffs = np.zeros((4,1))
+
+        rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
+
+        print(tvecs[0][0,0])
+        
         if (tvecs[0][0, 0] < 0):
           while(tvecs[0][0, 0] < -0.05):
             arlo.go_diff(28, 30, 0, 1)
@@ -59,8 +67,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
           while(tvecs[0][0, 0] > 0.05):
             arlo.go_diff(28, 30, 1, 0)
         
-          
-          #turn until tvecs
+#turn until tvecs
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
     
         topLefty = corners[0][0,0,1]
@@ -73,12 +80,6 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     else:
       arlo.go_diff(28, 30, 1, 0)
 
-    cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
-    distCoeffs = np.zeros((4,1))
-
-    rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-    
-    print(tvecs[0][0,0])
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
