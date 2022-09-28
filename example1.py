@@ -48,7 +48,6 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
     arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-    
 
 
     if (type(ids) is not type(None)):
@@ -79,6 +78,9 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     #print(ids
     else:
       arlo.go_diff(30, 32, 1, 0)
+      arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+      arucoParams = cv2.aruco.DetectorParameters_create()
+      (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
 
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
