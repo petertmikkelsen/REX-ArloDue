@@ -42,12 +42,12 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         print(" < < <  Game over!  > > > ")
         exit(-1)
     
-    arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
-    arucoParams = cv2.aruco.DetectorParameters_create()
-    (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-    cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
-    print(corners[0])
-    print(corners[3])
+    #arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+    #arucoParams = cv2.aruco.DetectorParameters_create()
+    #(corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+    #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
+    #print(corners[0])
+    #print(corners[3])
     #cameraMatrix = np.matrix('600 0 512; 0 600 360; 0 0 1')
     #distCoeffs = np.zeros((4,1))
 
