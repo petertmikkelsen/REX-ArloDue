@@ -50,9 +50,9 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     topLefty = corners[0][0,0,1]
     bottomLefty = corners[0][0,3,1]
     
-    print("TopLefty: " + topLefty)
-    print("BottomLefty: " + bottomLefty)
-    print("TopLefty - BottomLefty: " + (topLefty - bottomLefty)) 
+    print("TopLefty: " + str(topLefty))
+    print("BottomLefty: " + str(bottomLefty))
+    print("TopLefty - BottomLefty: " + str(topLefty - bottomLefty)) 
     #cameraMatrix = np.matrix('600 0 512; 0 600 360; 0 0 1')
     #distCoeffs = np.zeros((4,1))
 
