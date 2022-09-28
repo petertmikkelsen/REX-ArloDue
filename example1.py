@@ -1,6 +1,6 @@
 # This script shows how to open a camera in OpenCV and grab frames and show these.
 # Kim S. Pedersen, 2022
-
+import numpy as np
 import cv2 # Import the OpenCV library
 
 
@@ -42,8 +42,32 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         print(" < < <  Game over!  > > > ")
         exit(-1)
     
+    arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+    arucoParams = cv2.aruco.DetectorParameters_create()
+    (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+    cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
+    print(corners[0])
+    print(corners[3])
+    cameraMatrix = np.matrix('600 0 512; 0 600 360; 0 0 1')
+    distCoeffs = np.zeros((4,1))
+
+    rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.05, cameraMatrix, distCoeffs)
+
+    #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
+    
+    #for i in ids:
+    #    cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs[i], tvecs[i], 0.1)
+
+    #objp = np.zeros(3)
+
+    #objPoints = []
+    #imgPoints = []
+    #objPoints.append(objp)
+    #imgPoints.append(corners)
+
+    #cv2.calibrateCamera(objPoints, imgPoints, 1024, cameraMatrix, distCoeffs, rvecs, tvecs)
+
     # Show frames
     cv2.imshow(WIN_RF, frameReference)
-    
 
 # Finished successfully
