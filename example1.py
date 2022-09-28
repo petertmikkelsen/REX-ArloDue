@@ -78,7 +78,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("BottomLefty: " + str(bottomLefty))
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
     #print(ids
-    else:
+    #else:
       #arlo.Turn(degrees = 30)
       #sleep(0.5)
     
