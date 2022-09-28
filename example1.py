@@ -79,7 +79,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     #print(ids
     else:
       arlo.Turn(degrees = 30)
-      sleep(0.35)
+      sleep(0.5)
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
