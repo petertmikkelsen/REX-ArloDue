@@ -31,9 +31,9 @@ if not cam.isOpened(): # Error
     exit(-1)
 
 # Open a window
-WIN_RF = "Example 1"
-cv2.namedWindow(WIN_RF)
-cv2.moveWindow(WIN_RF, 100, 100)
+#WIN_RF = "Example 1"
+#cv2.namedWindow(WIN_RF)
+#cv2.moveWindow(WIN_RF, 100, 100)
 
 arlo = RobotDue.Robot()
 
@@ -49,7 +49,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
     
     if (ids is not None):
-        cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
+        #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
     
         topLefty = corners[0][0,0,1]
         bottomLefty = corners[0][0,3,1]
