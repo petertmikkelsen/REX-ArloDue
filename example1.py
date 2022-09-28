@@ -62,10 +62,10 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         
         if (tvecs[0][0, 0] < 0):
           while(tvecs[0][0, 0] < -0.05):
-            arlo.go_diff(28, 30, 0, 1)
+            arlo.go_diff(40, 42, 0, 1)
         else:
           while(tvecs[0][0, 0] > 0.05):
-            arlo.go_diff(28, 30, 1, 0)
+            arlo.go_diff(40, 42, 1, 0)
         
 #turn until tvecs
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
@@ -78,7 +78,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
     #print(ids
     else:
-      arlo.go_diff(28, 30, 1, 0)
+      arlo.go_diff(40, 42, 1, 0)
 
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
