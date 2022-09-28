@@ -57,13 +57,13 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("TopLefty: " + str(topLefty))
         #print("BottomLefty: " + str(bottomLefty))
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
-    #print(ids)
+        print(ids)
     cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
     distCoeffs = np.zeros((4,1))
 
     rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
     
-    print(tvecs[0][0,0])
+    #print(tvecs[0][0,0])
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
