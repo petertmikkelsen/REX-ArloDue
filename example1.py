@@ -2,6 +2,7 @@
 # Kim S. Pedersen, 2022
 import numpy as np
 import cv2 # Import the OpenCV library
+import RobotDue
 
 
 def gstreamer_pipeline(capture_width=1024, capture_height=720, framerate=30):
@@ -37,6 +38,7 @@ cv2.moveWindow(WIN_RF, 100, 100)
 
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     retval, frameReference = cam.read() # Read frame
+    arlo = RobotDue.Robot()
     
     if not retval: # Error
         print(" < < <  Game over!  > > > ")
@@ -59,7 +61,10 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     distCoeffs = np.zeros((4,1))
 
     rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-    print(tvecs)
+    
+    print(str(tvec[0][0,0]))
+ 
+    
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
     #for i in ids:
