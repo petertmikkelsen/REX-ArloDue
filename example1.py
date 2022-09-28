@@ -80,6 +80,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     #print(ids
     else:
       arlo.go_diff(30, 32, 1, 0)
+      print("3")
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
