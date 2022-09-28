@@ -48,7 +48,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
     
-    if (ids is not None):
+    if (type(ids) is not None):
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
     
         topLefty = corners[0][0,0,1]
