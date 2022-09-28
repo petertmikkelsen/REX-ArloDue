@@ -57,16 +57,22 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
         print(tvecs[0][0,0])
         
+        
+        #if tvecs is less than zero then the code is to the left
         if (tvecs[0][0, 0] < 0):
-          while(tvecs[0][0, 0] < -0.05):
+          arlo.go_diff(30, 32, 0, 1) #drive left
+          rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
+          if(tvecs[0][0, 0] < -0.05): #if tvecs is close to zero then stop
+            arlo.stop()
             print("1")
-            rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-            arlo.go_diff(30, 32, 0, 1)
         elif (tvecs[0][0,0] >= 0):
-          while(tvecs[0][0, 0] > 0.05):
+          arlo.go_diff(30, 32, 1, 0)#go right
+          rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)  
+          if(tvecs[0][0, 0] > 0.05): #if close to zero then stop
+            arlo.stop()
             print("2")
-            rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-            arlo.go_diff(30, 32, 1, 0)
+            
+            
         
 #turn until tvecs
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
