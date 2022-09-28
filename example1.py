@@ -44,11 +44,23 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         print(" < < <  Game over!  > > > ")
         exit(-1)
     
+    #detect ArUco kode-
     arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
     arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-    print(type(ids))
+    
+
+
     if (type(ids) is not type(None)):
+        if (tvecs[0][0, 0] < 0):
+          while(tvecs[0][0, 0] < -0.05):
+            arlo.go_diff(28, 30, 0, 1)
+        else:
+          while(tvecs[0][0, 0] > 0.05):
+            arlo.go_diff(28, 30, 1, 0)
+        
+          
+          #turn until tvecs
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
     
         topLefty = corners[0][0,0,1]
@@ -57,13 +69,16 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("TopLefty: " + str(topLefty))
         #print("BottomLefty: " + str(bottomLefty))
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
-        #print(ids)
+    #print(ids
+    else:
+      arlo.go_diff(28, 30, 1, 0)
+
     cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
     distCoeffs = np.zeros((4,1))
 
     rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
     
-    #print(tvecs[0][0,0])
+    print(tvecs[0][0,0])
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
