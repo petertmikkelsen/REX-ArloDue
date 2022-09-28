@@ -42,6 +42,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         print(" < < <  Game over!  > > > ")
         exit(-1)
     
+    ids = 0
     arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
     arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
