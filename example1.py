@@ -79,7 +79,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
     #print(ids
     else:
-      arlo.turn(degrees = 30)
+      arlo.Turn(degrees = 30)
       arlo.sleep(0.15)
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
