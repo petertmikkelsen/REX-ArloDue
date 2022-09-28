@@ -58,7 +58,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
     distCoeffs = np.zeros((4,1))
 
-    rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.05, cameraMatrix, distCoeffs)
+    rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
     print(tvecs)
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
