@@ -37,6 +37,11 @@ if not cam.isOpened(): # Error
 
 arlo = RobotDue.Robot()
 
+cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
+distCoeffs = np.zeros((4,1))
+
+arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+arucoParams = cv2.aruco.DetectorParameters_create()
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     retval, frameReference = cam.read() # Read frame
     
@@ -45,27 +50,21 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         exit(-1)
     
     #detect ArUco kode-
-    arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
-    arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
 
-
     if (type(ids) is not type(None)):
-
-        cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
-        distCoeffs = np.zeros((4,1))
-
         rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-
         print(tvecs[0][0,0])
         
         if (tvecs[0][0, 0] < 0):
           while(tvecs[0][0, 0] < -0.05):
             print("1")
+            rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
             arlo.go_diff(30, 32, 0, 1)
-        else:
+        else if (tvecs[0][0,0] >= 0):
           while(tvecs[0][0, 0] > 0.05):
             print("2")
+            rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
             arlo.go_diff(30, 32, 1, 0)
         
 #turn until tvecs
