@@ -47,7 +47,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
     arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-    
+    print(type(ids))
     if (type(ids) is not None):
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
     
@@ -57,7 +57,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("TopLefty: " + str(topLefty))
         #print("BottomLefty: " + str(bottomLefty))
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
-        print(ids)
+        #print(ids)
     cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
     distCoeffs = np.zeros((4,1))
 
