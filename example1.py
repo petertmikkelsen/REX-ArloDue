@@ -52,7 +52,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     
     print("TopLefty: " + str(topLefty))
     print("BottomLefty: " + str(bottomLefty))
-    print("TopLefty - BottomLefty: " + str(topLefty - bottomLefty)) 
+    print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
     #cameraMatrix = np.matrix('600 0 512; 0 600 360; 0 0 1')
     #distCoeffs = np.zeros((4,1))
 
