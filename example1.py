@@ -80,6 +80,6 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     #cv2.calibrateCamera(objPoints, imgPoints, 1024, cameraMatrix, distCoeffs, rvecs, tvecs)
 
     # Show frames
-    cv2.imshow(WIN_RF, frameReference)
+    # cv2.imshow(WIN_RF, frameReference)
 
 # Finished successfully
