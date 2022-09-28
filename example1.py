@@ -53,6 +53,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
 
     if (type(ids) is not type(None)):
+        print("found an id")
         rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
         print(tvecs[0][0,0])
         
@@ -78,8 +79,8 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty)) 
     #print(ids
     else:
-      arlo.Turn(degrees = 30)
-      sleep(0.5)
+      #arlo.Turn(degrees = 30)
+      #sleep(0.5)
     
     #image = cv2.drawFrameAxes(frameReference, cameraMatrix, distCoeffs, rvecs, tvecs, 2)
     
