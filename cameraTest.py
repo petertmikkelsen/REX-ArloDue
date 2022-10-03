@@ -71,7 +71,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
                 arlo.Turn(degrees = v)
               else:
                 arlo.Turn(degrees = v, Left = False)
-              arlo.Forward(distance = tvecs[0][0,2] - 0.2)
+              arlo.Forward(distance = tvecs[0][0,2] - 0.2, compensate = True)
               
               print("done!")
               exit(-1)
