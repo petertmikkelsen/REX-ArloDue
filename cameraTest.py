@@ -53,20 +53,22 @@ distCoeffs = np.zeros((4,1))
 
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     start = time.perf_counter()
-    if (time.perf_counter() - start > 2): # Stop after 5 second
-        retval, frameReference = cam.read() # Read frame
+    while(true)
+        if (time.perf_counter() - start > 2): # Stop after 5 second
+          retval, frameReference = cam.read() # Read frame
     
-        if not retval: # Error
-          print(" < < <  Game over!  > > > ")
-          exit(-1)
+          if not retval: # Error
+            print(" < < <  Game over!  > > > ")
+            exit(-1)
           
-        (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+          (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
         
-        if (type(ids) is not type(None)):
-            print('fundet kode')
-        else:
-            print("ikke fundet")
+          if (type(ids) is not type(None)):
+              print('fundet kode')
+          else:
+              print("ikke fundet")
             arlo.Turn(degrees=30)
+          break
     
 
     
