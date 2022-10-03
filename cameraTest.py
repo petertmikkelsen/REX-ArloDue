@@ -10,6 +10,10 @@ from time import sleep
 import math
 
 
+  
+  
+print("Finished")
+
 def gstreamer_pipeline(capture_width=1024, capture_height=720, framerate=30):
     """Utility function for setting parameters for the gstreamer camera pipeline"""
     return (
@@ -47,13 +51,19 @@ cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
+    start = time.perf_counter()
+    if (time.perf_counter() – start > 2): # Stop after 5 second
+        (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+        if (type(ids) is not type(None)):
+            print('fundet kode')
+    
     retval, frameReference = cam.read() # Read frame
     
     if not retval: # Error
         print(" < < <  Game over!  > > > ")
         exit(-1)
 
-    (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+    
     
     if (type(ids) is not type(None)):
         print('fundet')
@@ -63,7 +73,9 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         print(arlo.go_diff(46, 42, 0, 1))
         sleep(1)
         print(arlo.stop())
-        sleep(2)
+        
+            
+        
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
     
