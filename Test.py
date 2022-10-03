@@ -60,7 +60,8 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
 
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
         rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-
+        
+        print("Her er jeg")
         v = math.acos((tvecs[0][0,2])/math.sqrt((tvecs[0][0,0])**2 + (tvecs[0][0,1])**2 + (tvecs[0][0,2])**2)) * (180 / math.pi)
         arlo.Turn(degrees = v)
         arlo.Forward(distance = tvecs[0][0,2] - 0.2)
