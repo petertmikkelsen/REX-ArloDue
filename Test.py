@@ -6,7 +6,7 @@ import cv2 # Import the OpenCV library
 import cv2.aruco
 import numpy as np
 import RobotDue
-import time
+From time import sleep
 import math
 
 
