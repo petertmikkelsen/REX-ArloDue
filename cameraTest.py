@@ -54,7 +54,7 @@ distCoeffs = np.zeros((4,1))
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     start = time.perf_counter()
     while(True):
-        if (time.perf_counter() - start > 5): # Stop after 5 second
+        if (time.perf_counter() - start > 2): # Stop after 5 second
     
           if not retval: # Error
             print(" < < <  Game over!  > > > ")
@@ -66,7 +66,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
               print('fundet kode')
           else:
               print("ikke fundet")
-          arlo.Turn(degrees=30)
+              arlo.Turn(degrees=30)
           break
         else:
           retval, frameReference = cam.read() # Read frame
