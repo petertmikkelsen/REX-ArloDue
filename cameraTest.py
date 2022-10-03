@@ -47,9 +47,11 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         exit(-1)
 
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-    print('ikke fundet')
+    
     if (type(ids) is not type(None)):
         print('fundet')
+    else:
+        print('ikke fundet')
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
     
