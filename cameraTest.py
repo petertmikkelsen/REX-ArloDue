@@ -60,7 +60,9 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
     else:
         print('ikke fundet')
-        
+        print(self.go_diff(46, 42, 0, 1))
+        sleep(1)
+        print(self.stop())
     
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
