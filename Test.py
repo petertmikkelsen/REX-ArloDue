@@ -1,7 +1,9 @@
 # This script shows how to open a camera in OpenCV and grab frames and show these.
 # Kim S. Pedersen, 2022
 
+from imp import acquire_lock
 from math import degrees
+from turtle import distance, forward
 import cv2 # Import the OpenCV library
 import cv2.aruco
 import numpy as np
