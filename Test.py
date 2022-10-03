@@ -38,9 +38,9 @@ if not cam.isOpened(): # Error
     exit(-1)
 
 # Open a window
-WIN_RF = "Example 1"
-cv2.namedWindow(WIN_RF)
-cv2.moveWindow(WIN_RF, 100, 100)
+#WIN_RF = "Example 1"
+#cv2.namedWindow(WIN_RF)
+#cv2.moveWindow(WIN_RF, 100, 100)
 
 arlo = Robotdue.Robot()
 
