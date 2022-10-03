@@ -67,7 +67,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
               print('fundet kode')
           else:
               print("ikke fundet")
-            arlo.Turn(degrees=30)
+          arlo.Turn(degrees=30)
           break
     
 
