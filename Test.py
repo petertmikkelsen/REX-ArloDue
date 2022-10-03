@@ -41,6 +41,8 @@ if not cam.isOpened(): # Error
 #cv2.moveWindow(WIN_RF, 100, 100)
 
 arlo = RobotDue.Robot()
+arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+arucoParams = cv2.aruco.DetectorParameters_create()
 
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     retval, frameReference = cam.read() # Read frame
@@ -48,11 +50,10 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     if not retval: # Error
         print(" < < <  Game over!  > > > ")
         exit(-1)
-    
-    arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
-    arucoParams = cv2.aruco.DetectorParameters_create()
+
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
     print(str(ids))
+    
     if (type(ids) is not type(None)):
 
         cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
@@ -64,6 +65,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         print("Her er jeg")
         v = math.acos((tvecs[0][0,2])/math.sqrt((tvecs[0][0,0])**2 + (tvecs[0][0,1])**2 + (tvecs[0][0,2])**2)) * (180 / math.pi)
         arlo.Turn(degrees = v)
+        sleep(2)
         arlo.Forward(distance = tvecs[0][0,2] - 0.2)
         print("done!")
         exit(-1)
