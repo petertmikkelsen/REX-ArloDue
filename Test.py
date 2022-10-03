@@ -36,9 +36,9 @@ if not cam.isOpened(): # Error
     exit(-1)
 
 # Open a window
-WIN_RF = "Example 1"
-cv2.namedWindow(WIN_RF)
-cv2.moveWindow(WIN_RF, 100, 100)
+#WIN_RF = "Example 1"
+#cv2.namedWindow(WIN_RF)
+#cv2.moveWindow(WIN_RF, 100, 100)
 
 arlo = RobotDue.Robot()
 
@@ -58,7 +58,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
         distCoeffs = np.zeros((4,1))
 
-        cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
+        #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
         rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
         
         print("Her er jeg")
@@ -79,7 +79,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         sleep(2)
 
     # Show frames
-    cv2.imshow(WIN_RF, frameReference)
+    #cv2.imshow(WIN_RF, frameReference)
     
 
 # Finished successfully
