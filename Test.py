@@ -1,9 +1,7 @@
 # This script shows how to open a camera in OpenCV and grab frames and show these.
 # Kim S. Pedersen, 2022
 
-from imp import acquire_lock
 from math import degrees
-from turtle import distance, forward
 import cv2 # Import the OpenCV library
 import cv2.aruco
 import numpy as np
@@ -42,7 +40,7 @@ if not cam.isOpened(): # Error
 #cv2.namedWindow(WIN_RF)
 #cv2.moveWindow(WIN_RF, 100, 100)
 
-arlo = Robotdue.Robot()
+arlo = RobotDue.Robot()
 
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     retval, frameReference = cam.read() # Read frame
