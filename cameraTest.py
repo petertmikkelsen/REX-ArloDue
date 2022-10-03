@@ -63,7 +63,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         print(self.go_diff(46, 42, 0, 1))
         sleep(1)
         print(self.stop())
-    
+        sleep(2)
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
     
