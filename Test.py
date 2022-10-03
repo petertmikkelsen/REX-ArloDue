@@ -57,16 +57,17 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     print(str(ids))
     
     if (type(ids) is not type(None)):
+        print("Fundet")
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
-        rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
+        #rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
         
-        print("Her er jeg")
-        v = math.acos((tvecs[0][0,2])/math.sqrt((tvecs[0][0,0])**2 + (tvecs[0][0,1])**2 + (tvecs[0][0,2])**2)) * (180 / math.pi)
-        arlo.Turn(degrees = v)
-        sleep(2)
+        #print("Her er jeg")
+        #v = math.acos((tvecs[0][0,2])/math.sqrt((tvecs[0][0,0])**2 + (tvecs[0][0,1])**2 + (tvecs[0][0,2])**2)) * (180 / math.pi)
+        #arlo.Turn(degrees = v)
+        #sleep(2)
         #arlo.Forward(distance = tvecs[0][0,2] - 0.2)
         print("done!")
-        exit(-1)
+        #exit(-1)
 
         #topLefty = corners[0][0,0,1]
         #bottomLefty = corners[0][0,3,1]
@@ -75,7 +76,8 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("BottomLefty: " + str(bottomLefty))
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty))
     else:
-        arlo.Turn(arlo.go_diff(46, 42, 0, 1)
+        print("ikke fundet")
+    arlo.Turn(arlo.go_diff(46, 42, 0, 1)
 
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
