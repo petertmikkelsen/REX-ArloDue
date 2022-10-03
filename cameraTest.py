@@ -66,6 +66,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
               print('fundet kode')
               rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
               v = math.acos((tvecs[0][0,2])/math.sqrt((tvecs[0][0,0])**2 + (tvecs[0][0,1])**2 + (tvecs[0][0,2])**2)) * (180 / math.pi)
+              print(v)
               if (tvecs[0][0,0] < 0):
                 arlo.Turn(degrees = v)
               else:
