@@ -42,23 +42,21 @@ if not cam.isOpened(): # Error
 
 arlo = RobotDue.Robot()
 arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
-arucoParams = cv2.aruco.DetectorParameters_create()
 
+cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
+distCoeffs = np.zeros((4,1))
+    
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     retval, frameReference = cam.read() # Read frame
     
     if not retval: # Error
         print(" < < <  Game over!  > > > ")
         exit(-1)
-
+    arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
     print(str(ids))
     
     if (type(ids) is not type(None)):
-
-        cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
-        distCoeffs = np.zeros((4,1))
-
         #cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
         rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
         
