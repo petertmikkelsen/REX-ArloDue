@@ -54,7 +54,6 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         exit(-1)
     arucoParams = cv2.aruco.DetectorParameters_create()
     (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-    print(str(ids))
     
     if (type(ids) is not type(None)):
         print("Fundet")
@@ -77,7 +76,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty))
     else:
         print("ikke fundet")
-    arlo.go_diff(46, 42, 0, 1)
+    arlo.go_diff(46*0.7, 42*0.7, 0, 1)
 
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
