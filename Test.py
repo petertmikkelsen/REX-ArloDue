@@ -77,7 +77,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     else:
         print("ikke fundet")
     arlo.Turn(degrees = 15)
-
+    sleep(2)
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
     
