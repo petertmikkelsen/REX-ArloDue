@@ -53,7 +53,7 @@ distCoeffs = np.zeros((4,1))
 
 while cv2.waitKey(4) == -1: # Wait for a key pressed event
     start = time.perf_counter()
-    while(true):
+    while(True):
         if (time.perf_counter() - start > 2): # Stop after 5 second
           retval, frameReference = cam.read() # Read frame
     
