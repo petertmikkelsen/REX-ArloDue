@@ -54,25 +54,29 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
     start = time.perf_counter()
     if (time.perf_counter() – start > 2): # Stop after 5 second
         (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+        retval, frameReference = cam.read() # Read frame
+    
+        if not retval: # Error
+          print(" < < <  Game over!  > > > ")
+          exit(-1)
+          
         if (type(ids) is not type(None)):
             print('fundet kode')
+        else:
+            print("ikke fundet")
+            arlo.Turn(degrees=30)
     
-    retval, frameReference = cam.read() # Read frame
-    
-    if not retval: # Error
-        print(" < < <  Game over!  > > > ")
-        exit(-1)
 
     
     
-    if (type(ids) is not type(None)):
-        print('fundet')
-        #rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-    else:
-        print('ikke fundet')
-        print(arlo.go_diff(46, 42, 0, 1))
-        sleep(1)
-        print(arlo.stop())
+    #if (type(ids) is not type(None)):
+    #    print('fundet')
+    #    #rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
+    #else:
+    #    print('ikke fundet')
+    #    print(arlo.go_diff(46, 42, 0, 1))
+    #    sleep(1)
+    #    print(arlo.stop())
         
             
         
