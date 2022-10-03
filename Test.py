@@ -75,8 +75,7 @@ while cv2.waitKey(4) == -1: # Wait for a key pressed event
         #print("BottomLefty: " + str(bottomLefty))
         #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty))
     else:
-        arlo.Turn(degrees=30)
-        sleep(5)
+        arlo.Turn(arlo.go_diff(46, 42, 0, 1)
 
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
