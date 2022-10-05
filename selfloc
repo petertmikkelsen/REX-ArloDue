@@ -168,6 +168,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
 resamples = getweightsdist(myparticles, 200, 0, 11)
 #bestparticle = estimate_pose(resamples)
 
+arlo.Turn(False, 90)
 for i in resamples:
     i.turn(90)
 
