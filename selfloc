@@ -176,3 +176,8 @@ while(True):
     # Show world
     cv2.imshow(WIN_World, world)
 
+finally: 
+    # Make sure to clean up even if an exception occurred
+    
+    # Close all windows
+    cv2.destroyAllWindows()
