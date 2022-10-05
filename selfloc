@@ -184,7 +184,7 @@ print("turning: " + str(turnangle))
 if turnangle>0:
     arlo.Turn(False, turnangle, compensate=True)
 elif turnangle<0:
-    arlo.Turn(degrees = turnangle, compensate=True)
+    arlo.Turn(degrees = -turnangle, compensate=True)
 sleep(1)
 arlo.Forward(distance/100)
 
