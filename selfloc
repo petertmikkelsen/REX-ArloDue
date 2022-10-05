@@ -171,8 +171,7 @@ draw_world(bestparticle, myparticles, world)
 WIN_World = "World view"
 cv2.namedWindow(WIN_World)
 cv2.moveWindow(WIN_World, 500, 50)
-
+cv2.imshow(WIN_World, world)
 while(True):
-    # Show world
-    cv2.imshow(WIN_World, world)
+    pass
 
