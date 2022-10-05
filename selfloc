@@ -161,7 +161,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
 
 resamples = getweightsdist(myparticles, 500, 0, 11)
 bestparticle = estimate_pose(resamples)
-print(bestparticle.x)
-print(bestparticle.y)
-print(bestparticle.theta)
 
+world = np.zeros((500,500,3), dtype=np.uint8)
+
+draw_world(bestparticle, myparticles, world)
