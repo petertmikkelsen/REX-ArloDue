@@ -114,7 +114,7 @@ def draw_world(est_pose, particles, world):
     # Draw landmarks
     for i in range(len(landmarks)):
         ID = landmarks[i]
-        lm = (int(landmarks[ID][0] + offsetX), int(ymax - (landmarks[ID][1] + offsetY)))
+        lm = (int(landmarklocs[ID][0] + offsetX), int(ymax - (landmarklocs[ID][1] + offsetY)))
         cv2.circle(world, lm, 5, landmark_colors[i], 2)
 
     # Draw estimated robot pose
