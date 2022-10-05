@@ -9,7 +9,7 @@ arlo = RobotDue.Robot()
 
 landmarks = [11, 13]
 landmarklocs = {11: [100, 300], 13: [300, 100]}
-middlepoint = [100, 100]
+middlepoint = [200, 200]
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
@@ -179,13 +179,13 @@ print(bestparticle.y)
 print(bestparticle.theta)
 turnangle = bestparticle.getthetadiff(middlepoint[0], middlepoint[1])
 distance = bestparticle.getdist(middlepoint[0], middlepoint[1])
-sleep(0.1)
+sleep(1)
 print("turning: " + str(turnangle))
 if turnangle>0:
     arlo.Turn(False, turnangle, compensate=True)
 elif turnangle<0:
     arlo.Turn(degrees = turnangle, compensate=True)
-sleep(0.1)
+sleep(1)
 arlo.Forward(distance/100)
 
 
