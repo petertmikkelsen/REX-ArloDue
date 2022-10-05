@@ -42,7 +42,8 @@ class Particle():
         vectorlandmark = [x-self.x, y-self.y]
         vectortheta = [math.sin(self.theta*math.pi/180), math.cos(self.theta*math.pi/180)]
         test = np.dot(vectortheta, vectorlandmark)
-        return (180*math.acos(test/self.getdist(x, y))/math.pi) * (2*(int(vectorlandmark[0]>=0))-1)
+        specialdot = vectorlandmark[0]*(-vectortheta[1])+vectorlandmark[1]*vectortheta[0]
+        return (180*math.acos(test/self.getdist(x, y))/math.pi) * (2*(int(specialdot<0))-1)
 
 def estimate_pose(particles_list):
     """Estimate the pose from particles by computing the average position and orientation over all particles. 
