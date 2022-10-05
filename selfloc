@@ -179,6 +179,8 @@ print(bestparticle.y)
 print(bestparticle.theta)
 turnangle = bestparticle.getthetadiff(middlepoint[0], middlepoint[1])
 distance = bestparticle.getdist(middlepoint[0], middlepoint[1])
+sleep(0.1)
+print("turning: " + str(turnangle))
 if turnangle>0:
     arlo.Turn(False, turnangle, compensate=True)
 elif turnangle<0:
