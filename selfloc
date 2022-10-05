@@ -1,10 +1,15 @@
-import cv2
+#import cv2
 import math
 import numpy as np
 import random
+import RobotDue
+from time import sleep
+
+arlo = RobotDue.Robot()
 
 landmarks = [11, 13]
-landmarklocs = {11: [300, 400], 13: [300, 0]}
+landmarklocs = {11: [0, 200], 13: [200, 0]}
+middlepoint = [100, 100]
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
@@ -126,7 +131,7 @@ def draw_world(est_pose, particles, world):
 
 #temp = Particle(0, 0, 0)
 
-particlenumber = 2000
+particlenumber = 3000
 myparticles = []
 for i in range(particlenumber):
     myparticles.append(Particle())
@@ -139,7 +144,7 @@ def getweightsdist(particles, dist, thetadiff, landmarkid):
     landmark = landmarklocs[landmarkid]
     weights = np.zeros(len(particles))
     for i in particles:
-        weights[particles.index(i)] = norm(dist, i.getdist(landmark[0], landmark[1]), dist*0.025)
+        weights[particles.index(i)] = norm(dist, i.getdist(landmark[0], landmark[1]), dist*0.05)
     weights = weights/np.sum(weights)
     return getweightstheta(particles, thetadiff, landmarkid, weights)
 
@@ -148,8 +153,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     weights = np.zeros(len(particles))
     landmark = landmarklocs[landmarkid]
     for i in particles:
-        weights[particles.index(i)] = norm(thetadiff, i.getthetadiff(landmark[0], landmark[1]), 2)
-    weights = weights/np.sum(weights)
+        weights[particles.index(i)] = norm(thetadiff, i.getthetadiff(landmark[0], landmark[1]), 25)
     weights = weights*oldweights
     weights = weights/np.sum(weights)
     for i in range(len(particles)):
@@ -161,17 +165,25 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
 
 
 
-resamples = getweightsdist(myparticles, 500, 0, 11)
-bestparticle = estimate_pose(resamples)
+resamples = getweightsdist(myparticles, 200, 0, 11)
+#bestparticle = estimate_pose(resamples)
 
-world = np.zeros((500,500,3), dtype=np.uint8)
+for i in resamples:
+    i.turn(90)
 
-draw_world(bestparticle, myparticles, world)
+resamples2 = getweightsdist(resamples, 200, 0, 13)
+bestparticle = estimate_pose(resamples2)
+print(bestparticle.x)
+print(bestparticle.y)
+print(bestparticle.theta)
+turnangle = bestparticle.getthetadiff(middlepoint[0], middlepoint[1])
+distance = bestparticle.getdist(middlepoint[0], middlepoint[1])
+if turnangle>0:
+    arlo.Turn(False, turnangle, compensate=True)
+elif turnangle<0:
+    arlo.Turn(degrees = turnangle, compensate=True)
+sleep(0.1)
+arlo.Forward(distance/100)
 
-WIN_World = "World view"
-cv2.namedWindow(WIN_World)
-cv2.moveWindow(WIN_World, 500, 50)
-cv2.imshow(WIN_World, world)
-while(True):
-    pass
+
 
