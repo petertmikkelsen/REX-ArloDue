@@ -86,7 +86,7 @@ def draw_world(est_pose, particles, world):
     CWHITE = (255, 255, 255)
     CBLACK = (0, 0, 0)
     landmark_colors = [CRED, CGREEN]
-    
+
     # Fix the origin of the coordinate system
     offsetX = 100
     offsetY = 250
@@ -99,13 +99,13 @@ def draw_world(est_pose, particles, world):
     # Find largest weight
     max_weight = 0
     for particle in particles:
-        max_weight = max(max_weight, particle.getWeight())
+        max_weight = max(max_weight, particle.weight)
 
     # Draw particles
     for particle in particles:
         x = int(particle.getX() + offsetX)
         y = ymax - (int(particle.getY() + offsetY))
-        colour = jet(particle.getWeight() / max_weight)
+        colour = jet(particle.weight / max_weight)
         cv2.circle(world, (x,y), 2, colour, 2)
         b = (int(particle.getX() + 15.0*np.cos(particle.getTheta()))+offsetX, 
                                      ymax - (int(particle.getY() + 15.0*np.sin(particle.getTheta()))+offsetY))
@@ -152,6 +152,8 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     weights = weights/np.sum(weights)
     weights = weights*oldweights
     weights = weights/np.sum(weights)
+    for i in range(len(particles)):
+        particles[i].weight = weights[i]
     newparticles = []
     for i in range(len(particles)):
         newparticles.append(np.random.choice(particles, p=weights))
