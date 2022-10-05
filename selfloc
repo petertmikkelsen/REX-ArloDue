@@ -8,7 +8,7 @@ from time import sleep
 arlo = RobotDue.Robot()
 
 landmarks = [11, 13]
-landmarklocs = {11: [200, 20], 13: [0, 200]}
+landmarklocs = {11: [0, 200], 13: [200, 0]}
 middlepoint = [100, 100]
 
 def norm(x, mu, sigma):
