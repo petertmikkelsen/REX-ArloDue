@@ -132,7 +132,7 @@ def draw_world(est_pose, particles, world):
 
 #temp = Particle(0, 0, 0)
 
-particlenumber = 2000
+particlenumber = 3000
 myparticles = []
 for i in range(particlenumber):
     myparticles.append(Particle())
