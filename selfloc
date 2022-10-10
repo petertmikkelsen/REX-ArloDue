@@ -159,9 +159,9 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     weights = weights/np.sum(weights)
     for i in range(len(particles)):
         particles[i].weight = weights[i]
-    newparticles = []
-    for i in range(len(particles)):
-        newparticles.append(np.random.choice(particles, p=weights))
+    newparticles = np.zeros(particlenumber, dtype=Particle)
+    for i in range(particlenumber):
+        newparticles[i] = np.random.choice(particles, p=weights)
     return newparticles
 
 
