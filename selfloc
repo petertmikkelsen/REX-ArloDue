@@ -133,10 +133,10 @@ def draw_world(est_pose, particles, world):
 #temp = Particle(0, 0, 0)
 
 particlenumber = 3000
-myparticles = []
+myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
-    myparticles.append(Particle())
-    myparticles[-1].initialize(500, 500)
+    myparticles[i] = Particle()
+    myparticles[i].initialize(500, 500)
 #95% konfidensinterval for drejning er +- 2.5%
 #95% konfidensinterval for kørsel er +- 5%
 #robot = getArlo()
@@ -144,8 +144,8 @@ for i in range(particlenumber):
 def getweightsdist(particles, dist, thetadiff, landmarkid):
     landmark = landmarklocs[landmarkid]
     weights = np.zeros(len(particles))
-    for i in particles:
-        weights[particles.index(i)] = norm(dist, i.getdist(landmark[0], landmark[1]), dist*0.05)
+    for i in range(particlenumber):
+        weights[i] = norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*0.05)
     weights = weights/np.sum(weights)
     return getweightstheta(particles, thetadiff, landmarkid, weights)
 
@@ -153,8 +153,8 @@ def getweightsdist(particles, dist, thetadiff, landmarkid):
 def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     weights = np.zeros(len(particles))
     landmark = landmarklocs[landmarkid]
-    for i in particles:
-        weights[particles.index(i)] = max(0.000000001, norm(thetadiff, i.getthetadiff(landmark[0], landmark[1]), 1))
+    for i in range(particlenumber):
+        weights[i] = max(0.000000001, norm(thetadiff, particles[i].getthetadiff(landmark[0], landmark[1]), 1))
     weights = weights*oldweights
     weights = weights/np.sum(weights)
     for i in range(len(particles)):
