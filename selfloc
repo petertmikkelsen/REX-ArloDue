@@ -147,7 +147,7 @@ def getweightsdist(particles, dist, thetadiff, landmarkid):
     landmark = landmarklocs[landmarkid]
     weights = np.zeros(len(particles))
     for i in range(particlenumber):
-        weights[i] = norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*0.025)
+        weights[i] = max(0.000000001, norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*0.025))
     weights = weights/np.sum(weights)
     return getweightstheta(particles, thetadiff, landmarkid, weights)
 
