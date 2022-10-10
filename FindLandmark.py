@@ -82,12 +82,12 @@ def FindLandmark(robot, ids_array):
             break
           else:
             retval, frameReference = cam.read() # Read frame
-ids, v, dist, degreesTurned = FindLandmark(arlo, (8, 3))
+#ids, v, dist, degreesTurned = FindLandmark(arlo, (8, 3))
     
-print ("id: " + str(ids));
-print ("dist: " + str(dist));
-print ("vinkel: " + str(v));
-print ("turned: " + str(degreesTurned));
+#print ("id: " + str(ids));
+#print ("dist: " + str(dist));
+#print ("vinkel: " + str(v));
+#print ("turned: " + str(degreesTurned));
 
     #if (type(ids) is not type(None)):
     #    print('fundet')
