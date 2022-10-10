@@ -70,7 +70,7 @@ def FindLandmark():
                 dist = tvecs[0][0,2]
                 v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
               
-                return (ids, v, dist)
+                return ids, v, dist
             else:
                 print("ikke fundet")
                 arlo.Turn(degrees=30)
@@ -78,7 +78,7 @@ def FindLandmark():
           else:
             retval, frameReference = cam.read() # Read frame
     
-
+ids, v, dist = FindLandmark()
     
     
     #if (type(ids) is not type(None)):
