@@ -52,6 +52,7 @@ cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
 def FindLandmark():
+  i = 0
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
       while(True):
@@ -70,18 +71,24 @@ def FindLandmark():
                 y = tvecs[0][0,1]
                 dist = tvecs[0][0,2]
                 v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
+                degreesTurned = i*25
               
-                return ids, v, dist
+                return ids, v, dist, degreesTurned
             else:
                 print("ikke fundet")
-                arlo.Turn(degrees=30)
+                arlo.Turn(degrees=25)
+                i++
+                
             break
           else:
             retval, frameReference = cam.read() # Read frame
     
-ids, v, dist = FindLandmark()
+ids, v, dist, degreesTurned = FindLandmark()
     
-    
+print ids
+print dist
+print v
+print degreesTurned
     #if (type(ids) is not type(None)):
     #    print('fundet')
     #    #rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
