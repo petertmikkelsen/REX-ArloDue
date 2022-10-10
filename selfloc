@@ -133,10 +133,10 @@ def draw_world(est_pose, particles, world):
 #temp = Particle(0, 0, 0)
 
 particlenumber = 3000
-myparticles = np.zeros(particlenumber)
+myparticles = []
 for i in range(particlenumber):
-    myparticles[i] = Particle()
-    myparticles[i].initialize(500, 500)
+    myparticles.append(Particle())
+    myparticles[-1].initialize(500, 500)
 #95% konfidensinterval for drejning er +- 2.5%
 #95% konfidensinterval for kørsel er +- 5%
 #robot = getArlo()
