@@ -154,7 +154,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     weights = np.zeros(len(particles))
     landmark = landmarklocs[landmarkid]
     for i in particles:
-        weights[particles.index(i)] = norm(thetadiff, i.getthetadiff(landmark[0], landmark[1]), 3)
+        weights[particles.index(i)] = norm(thetadiff, i.getthetadiff(landmark[0], landmark[1]), 2)
     weights = weights*oldweights
     weights = weights/np.sum(weights)
     for i in range(len(particles)):
