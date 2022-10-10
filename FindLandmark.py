@@ -71,13 +71,13 @@ def FindLandmark():
                 y = tvecs[0][0,1]
                 dist = tvecs[0][0,2]
                 v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
-                degreesTurned = i*25
+                degreesTurned = i
               
                 return ids, v, dist, degreesTurned
             else:
                 print("ikke fundet")
                 arlo.Turn(degrees=25)
-                i++
+                i+=25
                 
             break
           else:
