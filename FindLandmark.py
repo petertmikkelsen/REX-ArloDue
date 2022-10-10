@@ -76,7 +76,7 @@ def FindLandmark(robot):
                 return ids, v, dist, degreesTurned
             else:
                 print("ikke fundet")
-                arlo.Turn(degrees=25)
+                robot.Turn(degrees=25)
                 i+=25
                 
             break
