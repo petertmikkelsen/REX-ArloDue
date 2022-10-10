@@ -3,6 +3,7 @@ import math
 import numpy as np
 import random
 import RobotDue
+import FindLandmark
 from time import sleep
 import copy
 
@@ -166,15 +167,21 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     return newparticles
 
 
+ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, landmarks)
 
-resamples = getweightsdist(myparticles, 200, 0, 11)
-#bestparticle = estimate_pose(resamples)
+for i in myparticles:
+    i.turn(degreesturned)
 
-arlo.Turn(False, 90)
+resamples = getweightsdist(myparticles, dist, angle, ids[0][0])
+
+otherlandmark = landmarks[1-landmarks.index(ids[0][0])] #assumes there are only 2 landmarks
+
+ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, [otherlandmark])
+
 for i in resamples:
-    i.turn(90)
+    i.turn(degreesturned)
 
-resamples2 = getweightsdist(resamples, 200, 0, 13)
+resamples2 = getweightsdist(resamples, dist, angle, ids[0][0])
 bestparticle = estimate_pose(resamples2)
 print(bestparticle.x)
 print(bestparticle.y)
