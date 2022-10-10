@@ -85,10 +85,11 @@ def FindLandmark():
     
 ids, v, dist, degreesTurned = FindLandmark()
     
-print ids
-print dist
-print v
-print degreesTurned
+print ("id: " + str(ids));
+print ("dist: " + str(dist));
+print ("vinkel: " + str(v));
+print ("turned: " + str(degreesTurned));
+
     #if (type(ids) is not type(None)):
     #    print('fundet')
     #    #rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
