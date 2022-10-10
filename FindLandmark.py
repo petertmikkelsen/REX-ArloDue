@@ -45,13 +45,13 @@ if not cam.isOpened(): # Error
 #cv2.namedWindow(WIN_RF)
 #cv2.moveWindow(WIN_RF, 100, 100)
 
-arlo = RobotDue.Robot()
+#arlo = RobotDue.Robot()
 arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
 arucoParams = cv2.aruco.DetectorParameters_create()
 cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
-def FindLandmark(ids_array):
+def FindLandmark(robot):
   i = 0
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
@@ -64,7 +64,7 @@ def FindLandmark(ids_array):
           
             (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
             
-            if ((type(ids) is not type(None)) and (ids[0,0] in ids_array)):
+            if (type(ids) is not type(None)):
                 print('fundet kode')
                 rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
                 x = tvecs[0][0,0]
@@ -83,13 +83,11 @@ def FindLandmark(ids_array):
           else:
             retval, frameReference = cam.read() # Read frame
 
-ids_array = [3, 8]
-ids, v, dist, degreesTurned = FindLandmark(ids_array)
     
-print ("id: " + str(ids));
-print ("dist: " + str(dist));
-print ("vinkel: " + str(v));
-print ("turned: " + str(degreesTurned));
+#print ("id: " + str(ids));
+#print ("dist: " + str(dist));
+#print ("vinkel: " + str(v));
+#print ("turned: " + str(degreesTurned));
 
     #if (type(ids) is not type(None)):
     #    print('fundet')
