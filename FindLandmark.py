@@ -56,14 +56,14 @@ def FindLandmark(ids_array):
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
       while(True):
-          if (time.perf_counter() - start > 2): # Stop after 2 second
+          if (time.perf_counter() - start > 1): # Stop after 2 second
     
             if not retval: # Error
               print(" < < <  Game over!  > > > ")
               exit(-1)
           
             (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-        
+            
             if ((type(ids) is not type(None)) and (ids[0,0] in ids_array)):
                 print('fundet kode')
                 rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
