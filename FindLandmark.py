@@ -51,7 +51,7 @@ arucoParams = cv2.aruco.DetectorParameters_create()
 cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
-def FindLandmark():
+def FindLandmark(ids_array):
   i = 0
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
@@ -64,7 +64,7 @@ def FindLandmark():
           
             (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
         
-            if (type(ids) is not type(None)):
+            if ((type(ids) is not type(None)) and (ids[0,0] in ids_array)):
                 print('fundet kode')
                 rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
                 x = tvecs[0][0,0]
@@ -82,8 +82,9 @@ def FindLandmark():
             break
           else:
             retval, frameReference = cam.read() # Read frame
-    
-ids, v, dist, degreesTurned = FindLandmark()
+
+ids_array = [3, 8]
+ids, v, dist, degreesTurned = FindLandmark(ids_array)
     
 print ("id: " + str(ids));
 print ("dist: " + str(dist));
