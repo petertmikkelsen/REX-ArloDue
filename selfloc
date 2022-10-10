@@ -4,6 +4,7 @@ import numpy as np
 import random
 import RobotDue
 from time import sleep
+import copy
 
 arlo = RobotDue.Robot()
 
@@ -161,7 +162,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         particles[i].weight = weights[i]
     newparticles = np.zeros(particlenumber, dtype=Particle)
     for i in range(particlenumber):
-        newparticles[i] = np.random.choice(particles, p=weights)
+        newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
 
