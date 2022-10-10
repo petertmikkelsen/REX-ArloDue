@@ -45,6 +45,7 @@ if not cam.isOpened(): # Error
 #cv2.namedWindow(WIN_RF)
 #cv2.moveWindow(WIN_RF, 100, 100)
 
+arlo = RobotDue.Robot()
 arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
 arucoParams = cv2.aruco.DetectorParameters_create()
 cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
