@@ -135,7 +135,7 @@ def draw_world(est_pose, particles, world):
 particlenumber = 3000
 myparticles = []
 myparticles = np.zeros(particlenumber)
-for i in range(particles):
+for i in range(myparticles):
     myparticles[i] = Particle()
     myparticles[i].initialize(500, 500)
 #95% konfidensinterval for drejning er +- 2.5%
