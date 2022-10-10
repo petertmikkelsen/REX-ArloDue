@@ -48,7 +48,7 @@ if not cam.isOpened(): # Error
 arlo = RobotDue.Robot()
 arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
 arucoParams = cv2.aruco.DetectorParameters_create()
-cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
+cameraMatrix = np.matrix('1766 0 960; 0 1766 540; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
 def FindLandmark(robot, ids_array):
