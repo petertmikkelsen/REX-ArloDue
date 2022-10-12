@@ -52,7 +52,7 @@ arucoParams = cv2.aruco.DetectorParameters_create()
 cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
-def FindLandmark(robot, ids_array):
+def FindLandmark(robot, ids_array, maxDegreesTurned=None):
   i = 0
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
@@ -62,6 +62,9 @@ def FindLandmark(robot, ids_array):
             if not retval: # Error
               print(" < < <  Game over!  > > > ")
               exit(-1)
+            if maxDegreesTurned is not None:
+              if maxDegreesTurned >= degreesTurned:
+                return None, None, None, degreesTurned
           
             (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
             
