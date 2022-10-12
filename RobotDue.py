@@ -161,7 +161,7 @@ class Robot(object):
                         sleep(0.01)
                 else:
                     print(self.stop())
-                    return
+                    return [False, False, False]
     
     def Turn(self, Left=True, degrees=90, speed=1, compensate = False):
         """Turns to the side, if 'Left' variable is set to True, it will turn left, otherwise it will turn right"""
