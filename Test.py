@@ -64,7 +64,7 @@ def FindLandmarks(robot, ids_array, cam):
               exit(-1)
           
             ids, dists, v = cam.detect_aruco_objects(frame)
-            if (type(ids) != type(None))
+            if (type(ids) != type(None)):
               return ids, v, dist, degreesTurned
             
             print("ikke fundet")
