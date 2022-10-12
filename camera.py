@@ -311,7 +311,7 @@ class Camera(object):
         print("ids: " + str(self.ids))
         
         self.rvecs, self.tvecs, _objPoints = cv2.aruco.estimatePoseSingleMarkers(self.aruco_corners, self.arucoMarkerLength, self.intrinsic_matrix, self.distortion_coeffs)
-
+        print(self.tvecs)
 
         if not isinstance(self.ids, type(None)):
             dists = np.linalg.norm(self.tvecs, axis=len(self.tvecs.shape) - 1) * 100
