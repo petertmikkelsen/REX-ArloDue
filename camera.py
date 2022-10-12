@@ -307,6 +307,9 @@ class Camera(object):
 
         If no object is detected, the returned variables are set to None."""
         self.aruco_corners, self.ids, rejectedImgPoints = cv2.aruco.detectMarkers(img, self.arucoDict, self.arucoParams)
+        print("corners: " + str(self.aruco_corners))
+        print("ids: " + str(self.ids))
+        
         self.rvecs, self.tvecs, _objPoints = cv2.aruco.estimatePoseSingleMarkers(self.aruco_corners, self.arucoMarkerLength, self.intrinsic_matrix, self.distortion_coeffs)
 
 
