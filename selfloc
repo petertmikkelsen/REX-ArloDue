@@ -34,12 +34,8 @@ class Particle():
         self.y += math.sin(self.theta)*distance
 
     def turn(self, degrees, right = True):
-        self.x -= math.cos(self.theta)*21
-        self.y -= math.sin(self.theta)*21
         degrees += random.random()*0.5+(random.randint(-5, 4)*0.005*degrees)
         self.theta += (int(right)*2-1)*degrees
-        self.x += math.cos(self.theta)*21
-        self.y += math.sin(self.theta)*21
         
     def getdist(self, x, y):
         return math.sqrt((x-self.x)**2+(y-self.y)**2)
@@ -182,7 +178,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
         print(dist*100)
         print(angle)
         print(degreesturned)
-        particles = getweightsdist(particles, dist*100, angle, ids[0][0])
+        particles = getweightsdist(particles, dist*100+20, angle, ids[0][0])
         if maxturn is not None:
             maxturn -= degreesturned
             if 0 > maxturn:
@@ -197,7 +193,7 @@ print(bestparticle.x)
 print(bestparticle.y)
 print(bestparticle.theta)
 turnangle = bestparticle.getthetadiff(middlepoint[0], middlepoint[1])
-distance = bestparticle.getdist(middlepoint[0], middlepoint[1])+20
+distance = bestparticle.getdist(middlepoint[0], middlepoint[1])
 sleep(1)
 print("turning: " + str(turnangle))
 print("driving: " + str(distance) + "cm")
