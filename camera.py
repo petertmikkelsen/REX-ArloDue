@@ -457,32 +457,32 @@ class Camera(object):
         
 
 
-if (__name__=='__main__'):
-    print("Opening and initializing camera")
-    
-    #cam = Camera(0, 'macbookpro', useCaptureThread=True)
-    #cam = Camera(0, 'macbookpro', useCaptureThread = False)
-    cam = Camera(0, robottype='arlo', useCaptureThread=True)
+#if (__name__=='__main__'):
+#    print("Opening and initializing camera")
+#    
+#    #cam = Camera(0, 'macbookpro', useCaptureThread=True)
+#    #cam = Camera(0, 'macbookpro', useCaptureThread = False)
+#    cam = Camera(0, robottype='arlo', useCaptureThread=True)
     
     # Open a window
-    WIN_RF1 = "Camera view"
-    cv2.namedWindow(WIN_RF1)
-    cv2.moveWindow(WIN_RF1, 50, 50)
+#    WIN_RF1 = "Camera view"
+#    cv2.namedWindow(WIN_RF1)
+#    cv2.moveWindow(WIN_RF1, 50, 50)
         
     #WIN_RF3 = "Camera view - gray"
     #cv2.namedWindow(WIN_RF3)
     #cv2.moveWindow(WIN_RF3, 550, 50)
     
-    while True:
+#    while True:
         
-        action = cv2.waitKey(10)
+#        action = cv2.waitKey(10)
         
-        if action == ord('q'):  # Quit
-            break
+#        if action == ord('q'):  # Quit
+#            break
     
-        # Fetch next frame
-        #colour = cam.get_colour()
-        colour = cam.get_next_frame()
+#        # Fetch next frame
+#        #colour = cam.get_colour()
+#        colour = cam.get_next_frame()
                 
         # Convert to gray scale
         #gray = cv2.cvtColor(colour, cv2.COLOR_BGR2GRAY )
@@ -498,24 +498,24 @@ if (__name__=='__main__'):
         # Draw detected pattern
         #cam.draw_object(colour)
 
-        IDs, dists, angles = cam.detect_aruco_objects(colour)
-        if not isinstance(IDs, type(None)):
-            for i in range(len(IDs)):
-                print("Object ID = ", IDs[i], ", Distance = ", dists[i], ", angles = ", angles[i])
+ #       IDs, dists, angles = cam.detect_aruco_objects(colour)
+ #       if not isinstance(IDs, type(None)):
+ #           for i in range(len(IDs)):
+ #               print("Object ID = ", IDs[i], ", Distance = ", dists[i], ", angles = ", angles[i])
 
         # Draw detected objects
-        cam.draw_aruco_objects(colour)
+  #      cam.draw_aruco_objects(colour)
 
     
         # Show frames
-        cv2.imshow(WIN_RF1, colour)
+  #      cv2.imshow(WIN_RF1, colour)
         
         # Show frames
         #cv2.imshow(WIN_RF3, gray)
         
         
     # Close all windows
-    cv2.destroyAllWindows()
+  #  cv2.destroyAllWindows()
 
     # Clean-up capture thread
-    cam.terminateCaptureThread()
+  #  cam.terminateCaptureThread()
