@@ -202,4 +202,4 @@ if turnangle>0:
 elif turnangle<0:
     arlo.Turn(degrees = -turnangle, compensate=True)
 sleep(1)
-arlo.Forward(distance/100)
+arlo.Forward(distance/100, ping = True)
