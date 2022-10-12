@@ -271,7 +271,7 @@ class Camera(object):
 
     def get_next_frame(self):
         """Gets the next available image frame from the camera."""
-        print("Her er jeg")
+        
         if self.useCaptureThread:
             img = self.framebuffer.get_frame()
             
