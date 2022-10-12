@@ -168,7 +168,10 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
 
 
 ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, landmarks)
+print(ids)
 print(dist)
+print(angle)
+print(degreesturned)
 
 for i in myparticles:
     i.turn(degreesturned)
@@ -178,7 +181,10 @@ resamples = getweightsdist(myparticles, dist, angle, ids[0][0])
 otherlandmark = landmarks[1-landmarks.index(ids[0][0])] #assumes there are only 2 landmarks
 
 ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, [otherlandmark])
+print(ids)
 print(dist)
+print(angle)
+print(degreesturned)
 
 for i in resamples:
     i.turn(degreesturned)
