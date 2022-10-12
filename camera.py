@@ -111,7 +111,7 @@ class Camera(object):
 
         print("robottype =", robottype)
         self.useCaptureThread = useCaptureThread
-
+        
         # Set camera calibration info
         if robottype == 'arlo':
             self.imageSize = (1024, 720)
@@ -239,6 +239,7 @@ class Camera(object):
 
         # Initialize aruco detector
         self.arucoDict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
+        self.arucoParams = cv2.aruco.DetectorParameters_create()
         # Set the correct physical marker size here
         self.arucoMarkerLength = 0.15  # [m] actual size of aruco markers (in object coordinate system)
         
@@ -304,7 +305,7 @@ class Camera(object):
         of the camera). This corresponds to that the angle is measuring location along the horizontal x-axis.
 
         If no object is detected, the returned variables are set to None."""
-        self.aruco_corners, self.ids, rejectedImgPoints = cv2.aruco.detectMarkers(img, self.arucoDict)
+        self.aruco_corners, self.ids, rejectedImgPoints = cv2.aruco.detectMarkers(img, self.arucoDict, self.arucoParams)
         self.rvecs, self.tvecs, _objPoints = cv2.aruco.estimatePoseSingleMarkers(self.aruco_corners, self.arucoMarkerLength, self.intrinsic_matrix, self.distortion_coeffs)
 
 
