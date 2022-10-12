@@ -80,8 +80,8 @@ def FindLandmark(robot, ids_array):
                 return ids, v, dist, degreesTurned
             else:
                 print("ikke fundet")
-                robot.Turn(degrees=15, Left=False)
-                i+=15
+                robot.Turn(degrees=25, Left=False)
+                i+=25
                 
             break
           else:
