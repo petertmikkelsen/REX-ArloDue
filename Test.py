@@ -61,9 +61,12 @@ def FindLandmarks(robot, ids_array, cam):
           frame = cam.get_next_frame()
           print(frame.shape)
           if (time.perf_counter() - start > 1): # Stop after 1 second
-            print("inden funktionen")
+            
             ids, dists, v = cam.detect_aruco_objects(frame)
-            print("efter funktionen")
+            print(ids.shape)
+            print(dists.shape)
+            print(v.shape)
+            
             if (type(ids) != type(None)):
               return ids, v, dist, degreesTurned
             
