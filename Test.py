@@ -50,6 +50,7 @@ arucoParams = cv2.aruco.DetectorParameters_create()
 # 512 x 360
 cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
+
 cam = Camera(cameraMatrix)
 
 def FindLandmarks(robot, ids_array, cam):
