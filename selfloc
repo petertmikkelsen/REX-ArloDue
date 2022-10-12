@@ -200,7 +200,7 @@ print(bestparticle.x)
 print(bestparticle.y)
 print(bestparticle.theta)
 turnangle = bestparticle.getthetadiff(middlepoint[0], middlepoint[1])
-distance = bestparticle.getdist(middlepoint[0], middlepoint[1])
+distance = bestparticle.getdist(middlepoint[0], middlepoint[1])+20
 sleep(1)
 print("turning: " + str(turnangle))
 print("driving: " + str(distance) + "cm")
