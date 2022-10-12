@@ -187,7 +187,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
     return
 
 
-updateloc(myparticles, landmarks, None)
+updateloc(myparticles, landmarks, 180)
 
 bestparticle = estimate_pose(myparticles)
 print(bestparticle.x)
