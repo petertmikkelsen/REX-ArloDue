@@ -9,7 +9,7 @@ import RobotDue
 from time import sleep
 import math
 import time
-import Camera
+import camera
 
 
 print("Finished")
