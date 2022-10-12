@@ -241,9 +241,9 @@ class Camera(object):
 
         # Initialize aruco detector
         self.arucoDict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
-        self.arucoParams = cv2.aruco.DetectorParameters_create()
+        
         # Set the correct physical marker size here
-        self.arucoMarkerLength = 0.15  # [m] actual size of aruco markers (in object coordinate system)
+        self.arucoMarkerLength = 0.145  # [m] actual size of aruco markers (in object coordinate system)
         
         # Initialize worker thread and framebuffer
         if self.useCaptureThread:
