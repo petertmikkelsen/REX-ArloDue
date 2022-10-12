@@ -1,6 +1,7 @@
 # Arlo Robot Controller
 
 from time import sleep
+import time
 import serial
 
 
