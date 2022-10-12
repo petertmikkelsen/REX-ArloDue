@@ -72,7 +72,10 @@ def FindLandmark(robot, ids_array):
                 dist = tvecs[0][0,2]
                 v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
                 degreesTurned = i
-              
+                
+                if (x > 0):
+                   v = -v
+                
                 return ids, v, dist, degreesTurned
             else:
                 print("ikke fundet")
