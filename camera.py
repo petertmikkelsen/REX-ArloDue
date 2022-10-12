@@ -120,7 +120,7 @@ class Camera(object):
             #self.intrinsic_matrix = np.asarray([ 6.0727040957659040e+02, 0., 3.0757300398967601e+02, 0.,
             #       6.0768864690145904e+02, 2.8935674612358201e+02, 0., 0., 1. ], dtype = np.float64)
             #self.intrinsic_matrix = np.asarray([1766, 0., self.imageSize[0] / 2.0, 0.,
-                   1766, self.imageSize[1] / 2.0, 0., 0., 1.], dtype = np.float64)
+                   #1766, self.imageSize[1] / 2.0, 0., 0., 1.], dtype = np.float64)
             #self.intrinsic_matrix.shape = (3, 3)
             self.intrinsic_matrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
             self.distortion_coeffs = np.zeros((4,1))
