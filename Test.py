@@ -59,10 +59,6 @@ def FindLandmarks(robot, ids_array, cam):
       start = time.perf_counter()
       while(True):
           if (time.perf_counter() - start > 1): # Stop after 1 second
-            
-            if not retval: # Error
-              print(" < < <  Game over!  > > > ")
-              exit(-1)
           
             ids, dists, v = cam.detect_aruco_objects(frame)
             if (type(ids) != type(None)):
