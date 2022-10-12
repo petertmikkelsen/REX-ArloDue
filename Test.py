@@ -54,7 +54,7 @@ distCoeffs = np.zeros((4,1))
 cam = Camera(camidx = cameraMatrix)
 
 def FindLandmarks(robot, ids_array, cam):
-  i = 0
+  degreesTurned = 0
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
       while(True):
