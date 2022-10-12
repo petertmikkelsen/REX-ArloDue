@@ -71,7 +71,7 @@ def FindLandmarks(robot, ids_array, cam):
              
             break
           else:
-             frame = cam.get_next_frame
+             frame = cam.get_next_frame()
               
 
 ids, v, dist, degreesTurned = FindLandmarks(arlo, (9, 3), cam)
