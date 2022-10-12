@@ -34,9 +34,13 @@ class Particle():
         self.y += math.sin(self.theta)*distance
 
     def turn(self, degrees, right = True):
+        self.x -= math.cos(self.theta)*21
+        self.y -= math.sin(self.theta)*21
         degrees += random.random()*0.5+(random.randint(-5, 4)*0.005*degrees)
         self.theta += (int(right)*2-1)*degrees
-
+        self.x += math.cos(self.theta)*21
+        self.y += math.sin(self.theta)*21
+        
     def getdist(self, x, y):
         return math.sqrt((x-self.x)**2+(y-self.y)**2)
     
@@ -168,7 +172,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
 
 
 ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, landmarks)
-dist = dist*100+20
+dist = dist*100
 print(ids)
 print(dist)
 print(angle)
@@ -182,7 +186,7 @@ resamples = getweightsdist(myparticles, dist, angle, ids[0][0])
 otherlandmark = landmarks[1-landmarks.index(ids[0][0])] #assumes there are only 2 landmarks
 
 ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, [otherlandmark])
-dist = dist*100+20
+dist = dist*100
 print(ids)
 print(dist)
 print(angle)
