@@ -58,6 +58,8 @@ def FindLandmarks(robot, ids_array, cam):
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
       while(True):
+          frame = cam.get_next_frame()
+          
           if (time.perf_counter() - start > 1): # Stop after 1 second
             print("inden funktionen")
             ids, dists, v = cam.detect_aruco_objects(frame)
@@ -70,8 +72,6 @@ def FindLandmarks(robot, ids_array, cam):
             degreesTurned+=25
              
             break
-          else:
-             frame = cam.get_next_frame()
               
 
 ids, v, dist, degreesTurned = FindLandmarks(arlo, (9, 3), cam)
