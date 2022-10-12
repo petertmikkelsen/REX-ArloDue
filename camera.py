@@ -119,12 +119,14 @@ class Camera(object):
             #       7.0564929862291285e+02, 2.5634470978315028e+02, 0., 0., 1. ], dtype = np.float64)
             #self.intrinsic_matrix = np.asarray([ 6.0727040957659040e+02, 0., 3.0757300398967601e+02, 0.,
             #       6.0768864690145904e+02, 2.8935674612358201e+02, 0., 0., 1. ], dtype = np.float64)
-            self.intrinsic_matrix = np.asarray([1766, 0., self.imageSize[0] / 2.0, 0.,
+            #self.intrinsic_matrix = np.asarray([1766, 0., self.imageSize[0] / 2.0, 0.,
                    1766, self.imageSize[1] / 2.0, 0., 0., 1.], dtype = np.float64)
-            self.intrinsic_matrix.shape = (3, 3)
+            #self.intrinsic_matrix.shape = (3, 3)
+            self.intrinsic_matrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
+            self.distortion_coeffs = np.zeros((4,1))
             #self.distortion_coeffs = np.asarray([ 1.1911006165076067e-01, -1.0003366233413549e+00,
             #       1.9287903277399834e-02, -2.3728201444308114e-03, -2.8137265581326476e-01 ], dtype = np.float64)
-            self.distortion_coeffs = np.asarray([0., 0., 2.0546093607192093e-02, -3.5538453075048249e-03, 0.], dtype = np.float64)
+            #self.distortion_coeffs = np.asarray([0., 0., 2.0546093607192093e-02, -3.5538453075048249e-03, 0.], dtype = np.float64)
         elif robottype == 'frindo':
             self.imageSize = (640, 480)
             #self.intrinsic_matrix = np.asarray([ 7.1305391967046853e+02, 0., 3.1172820723774367e+02, 0.,
