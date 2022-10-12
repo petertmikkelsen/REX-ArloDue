@@ -12,8 +12,6 @@ import time
 import camera
 
 
-  
-  
 print("Finished")
 # 1024 x 720
 def gstreamer_pipeline(capture_width=1024, capture_height=720, framerate=30):
@@ -78,7 +76,7 @@ def FindLandmarks(robot, ids_array, cam):
              frame = cam.get_next_frame
               
 
-ids, v, dist, degreesTurned = FindLandmark(arlo, (8, 3), cam)
+ids, v, dist, degreesTurned = FindLandmark(arlo, (9, 3), cam)
     
 print ("id: " + str(ids));
 print ("dist: " + str(dist));
