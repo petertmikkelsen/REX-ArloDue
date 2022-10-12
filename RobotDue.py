@@ -180,7 +180,21 @@ class Robot(object):
         print(self.go_diff(46*speed, 42*speed, int(not Left), int(Left)))
         sleep(((degrees/90)*sleeptime)/speed)
         print(self.stop())
-
+        
+    def gotowards(self, x, y, theta, targetx, targety, maxdrive=1):
+        vectortarget = [targetx-x, targety-y]
+        vectortheta = [math.sin(theta*math.pi/180), math.cos(theta*math.pi/180)]
+        test = np.dot(vectortheta, vectortarget)
+        specialdot = vectortarget[0]*(-vectortheta[1])+vectortarget[1]*vectortheta[0]
+        distance = math.sqrt((targetx-x)**2+(targety-y)**2)
+        turnangle = (180*math.acos(test/distance)/math.pi) * (2*(int(specialdot<0))-1)
+        if turnangle>0:
+            self.Turn(False, turnangle, compensate=True)
+        elif turnangle<0:
+            self.Turn(degrees = -turnangle, compensate=True)
+        sleep(0.2)
+        self.Forward(min(distance/100, maxdrive), ping=True)
+        
     def Circle(self, Left, stop = True):
         """drive in a circle, ending up at the original point. if variable 'left' is true, the circle will turn left"""
         if Left:
