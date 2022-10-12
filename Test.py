@@ -8,8 +8,13 @@ import numpy as np
 import RobotDue
 from time import sleep
 import math
+import time
 
 
+  
+  
+print("Finished")
+# 1024 x 720
 def gstreamer_pipeline(capture_width=1024, capture_height=720, framerate=30):
     """Utility function for setting parameters for the gstreamer camera pipeline"""
     return (
@@ -42,39 +47,63 @@ if not cam.isOpened(): # Error
 
 arlo = RobotDue.Robot()
 arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
-
+arucoParams = cv2.aruco.DetectorParameters_create()
+# 512 x 360
 cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
-    
-while cv2.waitKey(4) == -1: # Wait for a key pressed event
-    retval, frameReference = cam.read() # Read frame
-    
-    if not retval: # Error
-        print(" < < <  Game over!  > > > ")
-        exit(-1)
-    arucoParams = cv2.aruco.DetectorParameters_create()
-    (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
-    
-    if (type(ids) is not type(None)):
-        cv2.aruco.drawDetectedMarkers(frameReference, corners, ids)
-        rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-        
-        print("Her er jeg")
-        v = math.acos((tvecs[0][0,2])/math.sqrt((tvecs[0][0,0])**2 + (tvecs[0][0,1])**2 + (tvecs[0][0,2])**2)) * (180 / math.pi)
-        arlo.Turn(degrees = v)
-        sleep(2)
-        arlo.Forward(distance = tvecs[0][0,2] - 0.2)
-        print("done!")
-        exit(-1)
 
-        #topLefty = corners[0][0,0,1]
-        #bottomLefty = corners[0][0,3,1]
+def FindLandmark(robot, ids_array):
+  i = 0
+  while cv2.waitKey(4) == -1: # Wait for a key pressed event
+      start = time.perf_counter()
+      while(True):
+          if (time.perf_counter() - start > 1): # Stop after 2 second
     
-        #print("TopLefty: " + str(topLefty))
-        #print("BottomLefty: " + str(bottomLefty))
-        #print("BottomLefty - TopLefty: " + str(bottomLefty - topLefty))
-    else:
-        arlo.Turn(degrees = 15)
+            if not retval: # Error
+              print(" < < <  Game over!  > > > ")
+              exit(-1)
+          
+            (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+            
+            if (type(ids) is not type(None) and ids[0] in ids_array):
+                print('fundet kode')
+                rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
+                x = tvecs[0][0,0]
+                y = tvecs[0][0,1]
+                dist = tvecs[0][0,2]
+                v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
+                degreesTurned = i
+                
+                if (x > 0):
+                   v = -v
+                
+                return ids, v, dist, degreesTurned
+            else:
+                print("ikke fundet")
+                robot.Turn(degrees=25, Left=False)
+                i+=25
+                
+            break
+          else:
+            retval, frameReference = cam.read() # Read frame
+#ids, v, dist, degreesTurned = FindLandmark(arlo, (8, 3))
+    
+#print ("id: " + str(ids));
+#print ("dist: " + str(dist));
+#print ("vinkel: " + str(v));
+#print ("turned: " + str(degreesTurned));
+
+    #if (type(ids) is not type(None)):
+    #    print('fundet')
+    #    #rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
+    #else:
+    #    print('ikke fundet')
+    #    print(arlo.go_diff(46, 42, 0, 1))
+    #    sleep(1)
+    #    print(arlo.stop())
+        
+            
+        
     # Show frames
     #cv2.imshow(WIN_RF, frameReference)
     
