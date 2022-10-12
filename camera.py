@@ -312,7 +312,9 @@ class Camera(object):
         #print("corners: " + str(self.aruco_corners))
         #print("ids: " + str(self.ids))
         intrinsic_matrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
-        distortion_coeffs = np.zeros((4,1))
+        #distortion_coeffs = np.zeros((4,1))
+        distortion_coeffs = np.asarray([ 1.1911006165076067e-01, -1.0003366233413549e+00,
+                   1.9287903277399834e-02, -2.3728201444308114e-03, -2.8137265581326476e-01 ], dtype = np.float64)
         self.rvecs, self.tvecs, _objPoints = cv2.aruco.estimatePoseSingleMarkers(self.aruco_corners, self.arucoMarkerLength, intrinsic_matrix, distortion_coeffs)
         print(self.tvecs)
 
