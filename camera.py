@@ -32,7 +32,7 @@ def capPropId(prop):
     return getattr(cv2 if OPCV3 else cv2.cv, ("" if OPCV3 else "CV_") + "CAP_PROP_" + prop)
 
 
-def gstreamer_pipeline(capture_width=1280, capture_height=720, framerate=30):
+def gstreamer_pipeline(capture_width=1024, capture_height=720, framerate=30):
     """Utility function for setting parameters for the gstreamer camera pipeline"""
     return (
         "libcamerasrc !"
