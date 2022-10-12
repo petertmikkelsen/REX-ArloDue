@@ -133,18 +133,33 @@ class Robot(object):
 
     ### MOVEMENT FOR ARLO DUE
 
-    def Forward(self, distance = 1, powerLeft = 64, powerRight = 70, compensate = False, stop = True):
-        """drives forward. unless otherwise specified, will drive 1 meter, with compensation designed for ArloDue"""  
-        if compensate: #for some reason this might not work
-            print(self.go_diff(42, 46, 0, 1))
-            sleep(0.15)
-            print(self.stop())
-            sleep(0.1) #wait .1 second before next command
-        if distance > 0:  
-            print(self.go_diff(powerLeft, powerRight, 1, 1))
-            if stop:
-                sleep(2.45*distance)
+def Forward(self, distance = 1, powerLeft = 64, powerRight = 70, compensate = False, ping = False):
+    """drives forward. unless otherwise specified, will drive 1 meter, with compensation designed for ArloDue"""  
+    if compensate: #for some reason this might not work
+        print(self.go_diff(42, 46, 0, 1))
+        sleep(0.15)
+        print(self.stop())
+        sleep(0.1) #wait .1 second before next command
+    if distance > 0:  
+        driving = False
+        start = time.perf_counter()
+        while(True):
+            if (time.perf_counter()-start<distance*2.45):
+                if ping:
+                    pings = []
+                    for i in [0, 2, 3]:
+                        pings.append(self.read_sensor(i)<200*(1+int(i==0)))
+                        sleep(0.01)
+                    if True in pings:
+                        print(self.stop())
+                        return pings
+                if not (driving):
+                    driving = True
+                    print(self.go_diff(powerLeft, powerRight, 1, 1))
+                    sleep(0.01)
+            else:
                 print(self.stop())
+                return
     
     def Turn(self, Left=True, degrees=90, speed=1, compensate = False):
         """Turns to the side, if 'Left' variable is set to True, it will turn left, otherwise it will turn right"""
