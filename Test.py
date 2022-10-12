@@ -52,40 +52,28 @@ arucoParams = cv2.aruco.DetectorParameters_create()
 cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
-def FindLandmark(robot, ids_array):
+def FindLandmarks(robot, ids_array, cam):
   i = 0
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
       while(True):
-          if (time.perf_counter() - start > 1): # Stop after 2 second
-    
+          if (time.perf_counter() - start > 1): # Stop after 1 second
+            
             if not retval: # Error
               print(" < < <  Game over!  > > > ")
               exit(-1)
           
-            (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+            ids, dists, v = cam.detect_aruco_objects(frame)
+            if (type(ids) != type(None))
+              return ids, v, dist, degreesTurned
             
-            if (type(ids) is not type(None) and ids[0] in ids_array):
-                print('fundet kode')
-                rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
-                x = tvecs[0][0,0]
-                y = tvecs[0][0,1]
-                dist = tvecs[0][0,2]
-                v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
-                degreesTurned = i
-                
-                if (x > 0):
-                   v = -v
-                
-                return ids, v, dist, degreesTurned
-            else:
-                print("ikke fundet")
-                robot.Turn(degrees=25, Left=False)
-                i+=25
-                
+            print("ikke fundet")
+            robot.Turn(degrees=25, Left=False)
+            degreesTurned+=25
+             
             break
           else:
-            retval, frameReference = cam.read() # Read frame
+             frame = cam.get_next_frame
 #ids, v, dist, degreesTurned = FindLandmark(arlo, (8, 3))
     
 #print ("id: " + str(ids));
