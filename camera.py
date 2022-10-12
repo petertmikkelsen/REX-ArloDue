@@ -122,8 +122,8 @@ class Camera(object):
             #self.intrinsic_matrix = np.asarray([1766, 0., self.imageSize[0] / 2.0, 0.,
                    #1766, self.imageSize[1] / 2.0, 0., 0., 1.], dtype = np.float64)
             #self.intrinsic_matrix.shape = (3, 3)
-            self.intrinsic_matrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
-            self.distortion_coeffs = np.zeros((4,1))
+            #self.intrinsic_matrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
+            #self.distortion_coeffs = np.zeros((4,1))
             #self.distortion_coeffs = np.asarray([ 1.1911006165076067e-01, -1.0003366233413549e+00,
             #       1.9287903277399834e-02, -2.3728201444308114e-03, -2.8137265581326476e-01 ], dtype = np.float64)
             #self.distortion_coeffs = np.asarray([0., 0., 2.0546093607192093e-02, -3.5538453075048249e-03, 0.], dtype = np.float64)
@@ -311,8 +311,9 @@ class Camera(object):
         self.aruco_corners, self.ids, rejectedImgPoints = cv2.aruco.detectMarkers(img, self.arucoDict)
         #print("corners: " + str(self.aruco_corners))
         #print("ids: " + str(self.ids))
-        
-        self.rvecs, self.tvecs, _objPoints = cv2.aruco.estimatePoseSingleMarkers(self.aruco_corners, self.arucoMarkerLength, self.intrinsic_matrix, self.distortion_coeffs)
+        intrinsic_matrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
+        distortion_coeffs = np.zeros((4,1))
+        self.rvecs, self.tvecs, _objPoints = cv2.aruco.estimatePoseSingleMarkers(self.aruco_corners, self.arucoMarkerLength, intrinsic_matrix, distortion_coeffs)
         print(self.tvecs)
 
         if not isinstance(self.ids, type(None)):
