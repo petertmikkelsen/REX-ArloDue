@@ -4,7 +4,7 @@ from time import sleep
 import time
 import serial
 import math
-
+import numpy as np
 
 
 class Robot(object):
