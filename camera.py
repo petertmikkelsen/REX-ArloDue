@@ -289,7 +289,7 @@ class Camera(object):
             
             else: # Use OpenCV
                 retval, img = self.cam.read()  # Read frame
-
+                print("Her er jeg")
                 if not retval:  # Error
                     print("Camera.get_colour: Could not read next frame")
                     exit(-1)
