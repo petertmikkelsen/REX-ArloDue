@@ -271,6 +271,7 @@ class Camera(object):
 
     def get_next_frame(self):
         """Gets the next available image frame from the camera."""
+        print("Her er jeg")
         if self.useCaptureThread:
             img = self.framebuffer.get_frame()
             
@@ -289,7 +290,7 @@ class Camera(object):
             
             else: # Use OpenCV
                 retval, img = self.cam.read()  # Read frame
-                print("Her er jeg")
+                
                 if not retval:  # Error
                     print("Camera.get_colour: Could not read next frame")
                     exit(-1)
