@@ -59,7 +59,7 @@ def FindLandmarks(robot, ids_array, cam):
       start = time.perf_counter()
       while(True):
           frame = cam.get_next_frame()
-          print(frame.shape)
+          
           if (time.perf_counter() - start > 1): # Stop after 1 second
             
             ids, dist, v = cam.detect_aruco_objects(frame)
