@@ -306,7 +306,7 @@ class Camera(object):
         of the camera). This corresponds to that the angle is measuring location along the horizontal x-axis.
 
         If no object is detected, the returned variables are set to None."""
-        self.corners, self.ids, rejectedImgPoints = cv2.aruco.detectMarkers(img, self.arucoDict, self.arucoParams)
+        self.corners, self.ids, rejectedImgPoints = cv2.aruco.detectMarkers(img, self.arucoDict)
         print("corners: " + str(self.corners))
         print("ids: " + str(self.ids))
         
