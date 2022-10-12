@@ -134,7 +134,7 @@ def draw_world(est_pose, particles, world):
 
 #temp = Particle(0, 0, 0)
 
-particlenumber = 10000
+particlenumber = 30000
 myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
