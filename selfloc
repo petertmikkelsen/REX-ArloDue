@@ -194,5 +194,5 @@ print(bestparticle.y)
 print(bestparticle.theta)
 (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, 200, 200, 5)
 for i in particles:
-    i.move(distance)
     i.turn(turnangle)
+    i.move(distance)
