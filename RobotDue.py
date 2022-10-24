@@ -194,7 +194,7 @@ class Robot(object):
         elif turnangle<0:
             self.Turn(degrees = -turnangle, compensate=True)
         sleep(0.2)
-        self.Forward(min(distance/100, maxdrive), ping=True)
+        return self.Forward(min(distance/100, maxdrive), ping=True)
         
     def Circle(self, Left, stop = True):
         """drive in a circle, ending up at the original point. if variable 'left' is true, the circle will turn left"""
