@@ -9,8 +9,8 @@ import copy
 
 arlo = RobotDue.Robot()
 
-landmarks = [9, 3]
-landmarklocs = {9: [100, 300], 3: [300, 100]}
+landmarks = [1, 2, 3, 4]
+landmarklocs = {1: [100, 100], 2: [100, 400], 3: [500, 100], 4: [500, 400]}
 middlepoint = [200, 200]
 
 def norm(x, mu, sigma):
@@ -138,7 +138,7 @@ particlenumber = 10000
 myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
-    myparticles[i].initialize(500, 500)
+    myparticles[i].initialize(400, 400)
 #95% konfidensinterval for drejning er +- 2.5%
 #95% konfidensinterval for kørsel er +- 5%
 #robot = getArlo()
