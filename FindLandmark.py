@@ -82,7 +82,7 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             
             if (type(correct_id) is not type(None)):
                 print("correct_id: " + str(correct_id))
-                print("index_id: " + str(index_id)
+                print("index_id: " + str(index_id))
                 print("fundet kode")
                 rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners[index_id], 0.145, cameraMatrix, distCoeffs)
                 print(tvecs)
