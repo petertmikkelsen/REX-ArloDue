@@ -6,4 +6,6 @@ import time
 arlo = RobotDue.Robot()
 time.sleep(0.5)
 while(True):
-  arlo.Forward(compensate = True, ping = True)
+  (pings, distance), degreesturned = arlo.Forward(compensate = True, ping = True)
+  if True in pings:
+    break
