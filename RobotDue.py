@@ -154,14 +154,14 @@ class Robot(object):
                             sleep(0.01)
                         if True in pings:
                             print(self.stop())
-                            return pings
+                            return pings, (time.perf_counter()-start)/2.45
                     if not (driving):
                         driving = True
                         print(self.go_diff(powerLeft, powerRight, 1, 1))
                         sleep(0.01)
                 else:
                     print(self.stop())
-                    return [False, False, False]
+                    return [False, False, False], distance
     
     def Turn(self, Left=True, degrees=90, speed=1, compensate = False):
         """Turns to the side, if 'Left' variable is set to True, it will turn left, otherwise it will turn right"""
