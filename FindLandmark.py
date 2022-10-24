@@ -72,10 +72,11 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             correct_id = None
             index_id = 0
             
-            for i in range(len(ids)):
-              if (ids[i] in ids_array):
-                correct_id = ids[i,0]
-                index_id = i
+            if (type(ids) is not type(None)):
+              for i in range(len(ids)):
+                if (ids[i] in ids_array):
+                  correct_id = ids[i,0]
+                  index_id = i
             
             if (type(correct_id) is not type(None)):
                 print("correct_id: " + str(correct_id))
