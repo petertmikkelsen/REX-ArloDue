@@ -70,7 +70,7 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             
             print(ids)
             print(corners)
-            print(corners[0])
+            print(corners[1])
             
             if (type(ids) is not type(None) and ids[0] in ids_array):
                 print('fundet kode')
