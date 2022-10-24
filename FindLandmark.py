@@ -66,7 +66,9 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
               if maxDegreesTurned <= i:
                 return None, None, None, i
           
-            (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+            corners, ids, rejected = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
+            
+            print(corners)
             
             if (type(ids) is not type(None) and ids[0] in ids_array):
                 print('fundet kode')
@@ -89,7 +91,7 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             break
           else:
             retval, frameReference = cam.read() # Read frame
-#ids, v, dist, degreesTurned = FindLandmark(arlo, (8, 3))
+ids, v, dist, degreesTurned = FindLandmark(arlo, (8, 3))
     
 #print ("id: " + str(ids));
 #print ("dist: " + str(dist));
