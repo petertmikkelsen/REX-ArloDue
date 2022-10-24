@@ -138,7 +138,7 @@ particlenumber = 10000
 myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
-    myparticles[i].initialize(400, 400)
+    myparticles[i].initialize(300, 300)
 #95% konfidensinterval for drejning er +- 2.5%
 #95% konfidensinterval for kørsel er +- 5%
 #robot = getArlo()
