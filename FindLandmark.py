@@ -62,20 +62,27 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             if not retval: # Error
               print(" < < <  Game over!  > > > ")
               exit(-1)
+            
             if maxDegreesTurned is not None:
               if maxDegreesTurned <= i:
                 return None, None, None, i
           
             (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
             
-            print(ids)
-            print(corners)
-            print(corners[1])
+            correct_id = None
+            index_id = 0
             
-            if (type(ids) is not type(None) and ids[0] in ids_array):
+            for i in range(ids):
+              if (ids[i] in ids_array):
+                correct_id = ids[i]
+                index_id = i
+            
+            if (type(correct_id) is not type(None)):
                 print('fundet kode')
-                rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners, 0.145, cameraMatrix, distCoeffs)
+                rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners[index_id], 0.145, cameraMatrix, distCoeffs)
+                print(tvecs)
                 x = tvecs[0][0,0]
+                print(x)
                 y = tvecs[0][0,1]
                 dist = tvecs[0][0,2]
                 v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
