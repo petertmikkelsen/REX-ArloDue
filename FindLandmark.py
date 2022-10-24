@@ -68,6 +68,7 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
           
             (corners, ids, rejected) = cv2.aruco.detectMarkers(frameReference, arucoDict, parameters=arucoParams)
             
+            print(ids)
             print(corners)
             
             if (type(ids) is not type(None) and ids[0] in ids_array):
