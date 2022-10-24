@@ -183,7 +183,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
             maxturn -= degreesturned
             if 0 > maxturn:
                 return particles
-        inputlandmarks.remove(ids[0][0])
+        inputlandmarks.remove(ids)
     return particles
 
 myparticles = updateloc(myparticles, landmarks, None)
