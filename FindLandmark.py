@@ -79,13 +79,8 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
                   index_id = i
             
             if (type(correct_id) is not type(None)):
-                print("correct_id: " + str(correct_id))
-                print("index_id: " + str(index_id))
-                print("fundet kode")
                 rvecs, tvecs, markpointers= cv2.aruco.estimatePoseSingleMarkers(corners[index_id], 0.145, cameraMatrix, distCoeffs)
-                print(tvecs)
                 x = tvecs[0][0,0]
-                print(x)
                 y = tvecs[0][0,1]
                 dist = tvecs[0][0,2]
                 v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
@@ -103,8 +98,8 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             break
           else:
             retval, frameReference = cam.read() # Read frame
-ids, v, dist, degreesTurned = FindLandmark(arlo, (4, 5))
-print(ids)
+#ids, v, dist, degreesTurned = FindLandmark(arlo, (4, 5))
+#print(ids)
 #print ("id: " + str(ids));
 #print ("dist: " + str(dist));
 #print ("vinkel: " + str(v));
