@@ -152,7 +152,7 @@ class Robot(object):
                         for i in [0, 2, 3]:
                             pings.append(self.read_sensor(i)<200*(1+int(i==0)))
                             sleep(0.01)
-                        if True in pings:
+                        if True in pings and not(pings == [True, False, True]:
                             print(self.stop())
                             return pings, (time.perf_counter()-start)/2.45
                     if not (driving):
