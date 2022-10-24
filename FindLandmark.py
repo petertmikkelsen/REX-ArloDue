@@ -91,7 +91,7 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             break
           else:
             retval, frameReference = cam.read() # Read frame
-ids, v, dist, degreesTurned = FindLandmark(arlo, (4, 3))
+ids, v, dist, degreesTurned = FindLandmark(arlo, (1, 3))
     
 #print ("id: " + str(ids));
 #print ("dist: " + str(dist));
