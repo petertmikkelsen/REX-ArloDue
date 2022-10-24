@@ -53,7 +53,7 @@ cameraMatrix = np.matrix('1766 0 512; 0 1766 360; 0 0 1')
 distCoeffs = np.zeros((4,1))
 
 def FindLandmark(robot, ids_array, maxDegreesTurned=None):
-  i = 0
+  degreesTurned = 0
   while cv2.waitKey(4) == -1: # Wait for a key pressed event
       start = time.perf_counter()
       while(True):
@@ -84,7 +84,6 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
                 y = tvecs[0][0,1]
                 dist = tvecs[0][0,2]
                 v = math.acos(dist/math.sqrt(x**2 + y**2 + dist**2)) * (180 / math.pi)
-                degreesTurned = i
                 
                 if (x > 0):
                    v = -v
@@ -93,7 +92,7 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
             else:
                 print("ikke fundet")
                 robot.Turn(degrees=20, Left=False)
-                i+=20
+                degreesTurned+=20
                 
             break
           else:
