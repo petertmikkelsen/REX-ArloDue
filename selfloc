@@ -35,7 +35,7 @@ class Particle():
     def turn(self, degrees, right = True):
         if degrees < 0:
             right = not(right)
-        degrees += (random.random()+random.randint(-5, 4))*0.075*degrees
+        degrees += (random.random()+random.randint(-5, 4))*0.0075*degrees
         self.theta = np.mod((self.theta + (int(right)*2-1)*degrees), 360)
         
     def getdist(self, x, y):
@@ -141,6 +141,8 @@ for i in list(landmarklocs.values()):
         for j in myparticles:
             j.turn(turnangle)
             j.move(distance)
+        print("turned: " + str(turnangle))
+        print("drove: " + str(distance))
         bestparticle = estimate_pose(myparticles)
         print("after driving")
         print("x: " + str(myparticles[0].x))
