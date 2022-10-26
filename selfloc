@@ -78,7 +78,7 @@ def estimate_pose(particles_list):
     return Particle(x, y, theta)
 
 
-particlenumber = 10000
+particlenumber = 5000
 myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
