@@ -186,6 +186,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
     return particles
 
 for i in list(landmarklocs.values()):
+    print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
