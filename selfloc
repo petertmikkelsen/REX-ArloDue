@@ -11,7 +11,6 @@ arlo = RobotDue.Robot()
 
 landmarks = [1, 2, 3, 4]
 landmarklocs = {2: [100, 400], 3: [500, 100], 4: [500, 400], 1: [100, 100]}
-middlepoint = [200, 200]
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
