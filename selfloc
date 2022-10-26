@@ -28,14 +28,14 @@ class Particle():
         self.theta = random.random()+random.randint(0, 359)
     
     def move(self, distance):
-        distance += random.random()+(random.randint(-5, 4)*0.01*distance)
+        distance += random.random()+(random.randint(-5, 4)*0.1*distance)
         self.x += math.sin(math.radians(self.theta))*distance*100
         self.y += math.cos(math.radians(self.theta))*distance*100
 
     def turn(self, degrees, right = True):
         if degrees < 0:
             right = not(right)
-        degrees += random.random()*0.5+(random.randint(-5, 4)*0.0075*degrees)
+        degrees += random.random()*0.5+(random.randint(-5, 4)*0.75*degrees)
         self.theta = np.mod((self.theta + (int(right)*2-1)*degrees), 360)
         
     def getdist(self, x, y):
@@ -88,7 +88,7 @@ def getweightsdist(particles, dist, thetadiff, landmarkid):
     landmark = landmarklocs[landmarkid]
     weights = np.zeros(len(particles))
     for i in range(particlenumber):
-        weights[i] = max(0.000000001, norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*8.5))
+        weights[i] = max(0.000000001, norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*0.085))
     weights = weights/np.sum(weights)
     return getweightstheta(particles, thetadiff, landmarkid, weights)
 
