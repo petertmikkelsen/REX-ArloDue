@@ -36,7 +36,7 @@ class Particle():
         if degrees < 0:
             right = not(right)
         degrees += random.random()*0.5+(random.randint(-5, 4)*0.0075*degrees)
-        self.theta += ((int(right)*2-1)*degrees) % 360
+        self.theta = (self.theta + (int(right)*2-1)*degrees) % 360
         
     def getdist(self, x, y):
         return math.sqrt((x-self.x)**2+(y-self.y)**2)
