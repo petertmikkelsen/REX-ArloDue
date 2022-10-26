@@ -147,6 +147,7 @@ for i in list(landmarklocs.values()):
         print("y: " + str(myparticles[0].y))
         print("theta: " + str(myparticles[0].theta))        
         if bestparticle.getdist(i[0], i[1])<0.5:
+            print("im breaking free")
             break
         if True in pings:
             turning = 45
