@@ -133,6 +133,9 @@ for i in list(landmarklocs.values()):
         myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
+        if bestparticle.getdist(i[0], i[1])<0.5:
+           print("im breaking free")
+           break
         print("before driving")
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
