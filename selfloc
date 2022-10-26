@@ -134,7 +134,15 @@ def updateloc(particles, targetlandmarks, maxturn = 360, returndegreesturned = F
         return particles, startmaxturn-maxturn
     return particles
 
-for i in list(landmarklocs.values()):
+myparticles, degreesturned = updateloc(myparticles, returndegreesturned=True)
+if not (degreesturned==360):
+    arlo.Turn((360-degreesturned)<0, abs(360-degreesturned))
+pings, distance = arlo.Forward(2, compensate=True, ping=True)
+for i in myparticles:
+    i.turn(360-degreesturned)
+    i.move(distance)
+
+for i in [[100, 100]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
