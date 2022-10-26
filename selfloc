@@ -133,7 +133,7 @@ for i in list(landmarklocs.values()):
         myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
-        if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1]<60):
+        if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
            print("im breaking free")
            break
         print("before driving")
@@ -151,7 +151,7 @@ for i in list(landmarklocs.values()):
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
         print("theta: " + str(bestparticle.theta))        
-        if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1]<60):
+        if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
             print("im breaking free")
             break
         if True in pings:
