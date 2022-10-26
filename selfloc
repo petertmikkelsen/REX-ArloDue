@@ -138,6 +138,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360, returndegreesturned = F
     return particles
 
 myparticles, degreesturned = updateloc(myparticles, landmarks, returndegreesturned=True)
+print("degreesturned" + str(degreesturned))
 if not (degreesturned==360):
     arlo.Turn((360-degreesturned)<0, abs(360-degreesturned))
 pings, distance = arlo.Forward(2, compensate=True, ping=True)
