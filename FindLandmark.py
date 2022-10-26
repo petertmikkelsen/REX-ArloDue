@@ -90,7 +90,6 @@ def FindLandmark(robot, ids_array, maxDegreesTurned=None):
                 
                 return correct_id, v, dist, degreesTurned
             else:
-                print("ikke fundet")
                 robot.Turn(degrees=20, Left=False)
                 degreesTurned+=20
                 
