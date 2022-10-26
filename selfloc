@@ -27,7 +27,7 @@ class Particle():
         self.y = random.random()+random.randint(minY, maxY-1)
         self.theta = random.random()+random.randint(0, 359)
         if target is not None:
-            diff = self.getthetadiff(landmarklocs[1][0], landmarklocs[1][1])
+            diff = self.getthetadiff(target[0], target[1])
             self.theta = np.mod(self.theta+diff+random.randint(-15, 15), 360)        
     
     def move(self, distance):
