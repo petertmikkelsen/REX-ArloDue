@@ -178,7 +178,7 @@ class Robot(object):
             sleeptime = 1.1
         if not Left and compensate:
             sleeptime = 1
-        print(self.go_diff(46*speed, 42*speed, int(not Left), int(Left)))
+        self.go_diff(46*speed, 42*speed, int(not Left), int(Left))
         sleep(((degrees/90)*sleeptime)/speed)
         print(self.stop())
         
