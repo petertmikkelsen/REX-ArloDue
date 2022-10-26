@@ -111,8 +111,8 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
     inputlandmarks = copy.copy(targetlandmarks)
     for i in range(len(targetlandmarks)):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
-        for i in particles:
-            i.turn(degreesturned)
+        for j in particles:
+            j.turn(degreesturned)
         if ids is None:
             return particles
         print("found landmark id: " + str(ids))
