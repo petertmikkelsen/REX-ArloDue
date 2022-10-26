@@ -107,7 +107,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
-def updateloc(particles, targetlandmarks, maxturn = 360, returndegreesturned = False):
+def updateloc(particles, targetlandmarks, maxturn = 360):
     startmaxturn = maxturn
     inputlandmarks = copy.copy(targetlandmarks)
     for i in range(len(targetlandmarks)):
@@ -115,8 +115,6 @@ def updateloc(particles, targetlandmarks, maxturn = 360, returndegreesturned = F
         for i in particles:
             i.turn(degreesturned)
         if ids is None:
-            if returndegreesturned:
-                return particles, startmaxturn - maxturn
             return particles
         print("found landmark id: " + str(ids))
         print("distance to landmark: " + str(dist*100+20))
@@ -126,21 +124,9 @@ def updateloc(particles, targetlandmarks, maxturn = 360, returndegreesturned = F
         if maxturn is not None:
             maxturn -= degreesturned
             if 0 > maxturn:
-                if returndegreesturned:
-                    return particles, startmaxturn-maxturn
                 return particles
         inputlandmarks.remove(ids)
-    if returndegreesturned:
-        return particles, startmaxturn-maxturn
     return particles
-
-myparticles, degreesturned = updateloc(myparticles, landmarks, returndegreesturned=True)
-if not (degreesturned==360):
-    arlo.Turn((360-degreesturned)<0, abs(360-degreesturned))
-pings, distance = arlo.Forward(2, compensate=True, ping=True)
-for i in myparticles:
-    i.turn(360-degreesturned)
-    i.move(distance)
 
 for i in [[100, 100]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
