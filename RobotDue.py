@@ -180,7 +180,7 @@ class Robot(object):
             sleeptime = 1
         self.go_diff(46*speed, 42*speed, int(not Left), int(Left))
         sleep(((degrees/90)*sleeptime)/speed)
-        print(self.stop())
+        self.stop()
         
     def gotowards(self, x, y, theta, targetx, targety, maxdrive=1):
         vectortarget = [targetx-x, targety-y]
