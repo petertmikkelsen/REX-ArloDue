@@ -187,7 +187,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
 
 for i in list(landmarklocs.values()):
     while (True):
-        myparticles = updateloc(myparticles, landmarks, None)
+        myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1])
