@@ -22,12 +22,10 @@ class Particle():
         self.theta = np.mod(theta, 360)
         self.weight = weight
     
-    def initialize(self, maxX, maxY, minX=0, minY=0, target=None):
+    def initialize(self, maxX, maxY, minX=0, minY=0):
         self.x = random.random()+random.randint(minX, maxX-1)
         self.y = random.random()+random.randint(minY, maxY-1)
-        self.theta = random.random()+random.randint(0, 359)
-        if target is not None:
-            self.theta = np.mod(self.theta+self.getthetadiff(target[0], target[1])+random.randint(-15, 15), 360)        
+        self.theta = random.random()+random.randint(0, 359)  
     
     def move(self, distance):
         distance += random.random()+(random.randint(-5, 4)*0.1*distance)
@@ -81,7 +79,7 @@ particlenumber = 10000
 myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
-    myparticles[i].initialize(300, 300, target=[90, 90])
+    myparticles[i].initialize(300, 300)
 #95% konfidensinterval for drejning er +- 2.5%
 #95% konfidensinterval for kørsel er +- 5%
 #robot = getArlo()
