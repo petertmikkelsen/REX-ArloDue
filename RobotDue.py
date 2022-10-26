@@ -138,7 +138,7 @@ class Robot(object):
     def Forward(self, distance = 1, powerLeft = 64, powerRight = 70, compensate = False, ping = False):
         """drives forward. unless otherwise specified, will drive 1 meter, with compensation designed for ArloDue"""  
         if compensate: #for some reason this might not work
-            print(self.go_diff(42, 46, 0, 1))
+            self.go_diff(42, 46, 0, 1)
             sleep(0.15)
             print(self.stop())
             sleep(0.1) #wait .1 second before next command
@@ -157,7 +157,7 @@ class Robot(object):
                             return pings, (time.perf_counter()-start)/2.45
                     if not (driving):
                         driving = True
-                        print(self.go_diff(powerLeft, powerRight, 1, 1))
+                        self.go_diff(powerLeft, powerRight, 1, 1)
                         sleep(0.03)
                 else:
                     print(self.stop())
