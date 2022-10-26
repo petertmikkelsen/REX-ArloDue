@@ -26,6 +26,7 @@ class Particle():
         self.x = random.random()+random.randint(minX, maxX-1)
         self.y = random.random()+random.randint(minY, maxY-1)
         self.theta = random.random()+random.randint(0, 359)
+        
     
     def move(self, distance):
         distance += random.random()+(random.randint(-5, 4)*0.1*distance)
@@ -75,15 +76,6 @@ def estimate_pose(particles_list):
     return Particle(x, y, theta)
 
 
-particlenumber = 10000
-myparticles = np.zeros(particlenumber, dtype=Particle)
-for i in range(particlenumber):
-    myparticles[i] = Particle()
-    myparticles[i].initialize(300, 300)
-#95% konfidensinterval for drejning er +- 2.5%
-#95% konfidensinterval for kørsel er +- 5%
-#robot = getArlo()
-
 def getweightsdist(particles, dist, thetadiff, landmarkid):
     landmark = landmarklocs[landmarkid]
     weights = np.zeros(len(particles))
@@ -108,7 +100,6 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     return newparticles
 
 def updateloc(particles, targetlandmarks, maxturn = 360):
-    startmaxturn = maxturn
     inputlandmarks = copy.copy(targetlandmarks)
     for i in range(len(targetlandmarks)):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
@@ -128,7 +119,15 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
         inputlandmarks.remove(ids)
     return particles
 
-for i in [[100, 100]]+list(landmarklocs.values()):
+particlenumber = 10000 #skift om nødvendigt
+myparticles = np.zeros(particlenumber, dtype=Particle)
+for i in range(particlenumber):
+    myparticles[i] = Particle()
+    myparticles[i].initialize(300, 300)
+
+#indsæt opstart
+
+for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
