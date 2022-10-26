@@ -28,7 +28,7 @@ class Particle():
         self.theta = random.random()+random.randint(0, 359)
     
     def move(self, distance):
-        distance += random.random()+(random.randint(-5, 4)*0.0005*distance)
+        distance += random.random()+(random.randint(-5, 4)*0.1*distance)
         self.x += math.cos(self.theta)*distance
         self.y += math.sin(self.theta)*distance
 
