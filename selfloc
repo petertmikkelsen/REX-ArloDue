@@ -191,15 +191,10 @@ for i in list(landmarklocs.values()):
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1])
-        for i in myparticles:
-            i.turn(turnangle)
-            i.move(distance)
+        for j in myparticles:
+            j.turn(turnangle)
+            j.move(distance)
         bestparticle = estimate_pose(myparticles)
-        print(bestparticle.x)
-        print(bestparticle.y)
-        print(bestparticle.theta)
-        print(i[0])
-        print(i[1])
         if bestparticle.getdist(i[0], i[1])<0.5:
             break
         if True in pings:
@@ -209,24 +204,24 @@ for i in list(landmarklocs.values()):
                     turning = 15
                 arlo.Turn(False, turning)
                 pings, distance = arlo.Forward(0.5, compensate=True, ping=True)
-                for i in myparticles:
-                    i.turn(turning)
-                    i.move(distance)
+                for j in myparticles:
+                    j.turn(turning)
+                    j.move(distance)
             elif pings[2] and not pings[1]:
                 if arlo.read_sensor(2)<500:
                     turning = 15
                 arlo.Turn(True, turning)
                 pings, distance = arlo.Forward(0.5, compensate=True, ping=True)
-                for i in myparticles:
-                    i.turn(-turning)
-                    i.move(distance)
+                for j in myparticles:
+                    j.turn(-turning)
+                    j.move(distance)
             elif pings[0]:
                 left = bestparticle.getthetadiff(300, 250)>0
                 arlo.Turn(left, 45)
                 pings, distance = arlo.Forward(0.5, compensate=True, ping=True)
-                for i in myparticles:
-                    i.turn(45 - 90*int(left))
-                    i.move(distance)
+                for j in myparticles:
+                    j.turn(45 - 90*int(left))
+                    j.move(distance)
 
     
 
