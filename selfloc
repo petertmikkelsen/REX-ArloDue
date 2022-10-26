@@ -115,10 +115,10 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
             i.turn(degreesturned)
         if ids is None:
             return particles
-        print(ids)
-        print(dist*100+20)
-        print(angle)
-        print(degreesturned)
+        print("found landmark id: " + str(ids))
+        print("distance to landmark: " + str(dist*100+20))
+        print("angle to landmark: " + str(angle))
+        print("degrees turned to find landmark: " + str(degreesturned))
         particles = getweightsdist(particles, dist*100+20, -angle, ids)
         if maxturn is not None:
             maxturn -= degreesturned
