@@ -146,7 +146,7 @@ for i in myparticles:
     i.turn(360-degreesturned)
     i.move(distance)
 
-for i in [[100, 100]]+list(landmarklocs.values()):
+for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
