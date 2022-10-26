@@ -151,14 +151,14 @@ class Robot(object):
                         pings = []
                         for i in [0, 2, 3]:
                             pings.append(self.read_sensor(i)<200*(1+int(i==0)))
-                            sleep(0.01)
+                            sleep(0.03)
                         if True in pings:
                             print(self.stop())
                             return pings, (time.perf_counter()-start)/2.45
                     if not (driving):
                         driving = True
                         print(self.go_diff(powerLeft, powerRight, 1, 1))
-                        sleep(0.01)
+                        sleep(0.03)
                 else:
                     print(self.stop())
                     return [False, False, False], distance
