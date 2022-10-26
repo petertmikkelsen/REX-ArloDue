@@ -182,7 +182,7 @@ class Robot(object):
         sleep(((degrees/90)*sleeptime)/speed)
         self.stop()
         
-    def gotowards(self, x, y, theta, targetx, targety, maxdrive=1):
+    def gotowards(self, x, y, theta, targetx, targety, maxdrive=1, compensate = True):
         vectortarget = [targetx-x, targety-y]
         vectortheta = [math.sin(theta*math.pi/180), math.cos(theta*math.pi/180)]
         test = np.dot(vectortheta, vectortarget)
@@ -190,10 +190,10 @@ class Robot(object):
         distance = math.sqrt((targetx-x)**2+(targety-y)**2)
         turnangle = (180*math.acos(test/distance)/math.pi) * (2*(int(specialdot<0))-1)
         if turnangle>0:
-            self.Turn(False, turnangle, compensate=True)
+            self.Turn(False, turnangle, compensate=compensate)
             returning = turnangle
         elif turnangle<0:
-            self.Turn(degrees = -turnangle, compensate=True)
+            self.Turn(degrees = -turnangle, compensate=compensate)
             returning = -turnangle
         sleep(0.2)
         return self.Forward(min(distance/100, maxdrive), ping=True), returning
