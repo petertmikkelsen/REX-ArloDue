@@ -134,9 +134,9 @@ for i in list(landmarklocs.values()):
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         print("before driving")
-        print("x: " + str(myparticles[0].x))
-        print("y: " + str(myparticles[0].y))
-        print("theta: " + str(myparticles[0].theta))
+        print("x: " + str(bestparticle.x))
+        print("y: " + str(bestparticle.y))
+        print("theta: " + str(bestparticle.theta))
         (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1])
         for j in myparticles:
             j.turn(turnangle)
