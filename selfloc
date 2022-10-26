@@ -10,7 +10,7 @@ import copy
 arlo = RobotDue.Robot()
 
 landmarks = [1, 2, 3, 4]
-landmarklocs = {1: [100, 100], 2: [100, 400], 3: [500, 100], 4: [500, 400]}
+landmarklocs = {2: [100, 400], 3: [500, 100], 4: [500, 400], 1: [100, 100]}
 middlepoint = [200, 200]
 
 def norm(x, mu, sigma):
