@@ -133,14 +133,14 @@ for i in list(landmarklocs.values()):
         myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
-        if bestparticle.getdist(i[0], i[1])<50:
+        if abs(bestparticle.x-i[0])<70 and abs(bestparticle.y-i[1]<70):
            print("im breaking free")
            break
         print("before driving")
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
         print("theta: " + str(bestparticle.theta))
-        (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1])
+        (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1], compensate=False)
         for j in myparticles:
             j.turn(turnangle)
             j.move(distance)
@@ -151,7 +151,7 @@ for i in list(landmarklocs.values()):
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
         print("theta: " + str(bestparticle.theta))        
-        if bestparticle.getdist(i[0], i[1])<50:
+        if abs(bestparticle.x-i[0])<70 and abs(bestparticle.y-i[1]<70):
             print("im breaking free")
             break
         if True in pings:
