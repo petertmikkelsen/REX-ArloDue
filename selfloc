@@ -166,7 +166,7 @@ for i in [[100, 100]]+list(landmarklocs.values()):
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
         print("theta: " + str(bestparticle.theta))        
-        if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
+        if abs(bestparticle.x-i[0])<40 and abs(bestparticle.y-i[1])<40:
             print("im breaking free")
             break
         if True in pings:
