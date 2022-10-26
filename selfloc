@@ -28,9 +28,9 @@ class Particle():
         self.theta = random.random()+random.randint(0, 359)
     
     def move(self, distance):
-        distance += (random.random()+random.randint(-5, 4))*0.01*distance
-        self.x += math.cos(self.theta)*distance
-        self.y += math.sin(self.theta)*distance
+        distance += random.random()+(random.randint(-5, 4)*0.01*distance)
+        self.x += math.sin(math.radians(self.theta))*distance*100
+        self.y += math.cos(math.radians(self.theta))*distance*100
 
     def turn(self, degrees, right = True):
         if degrees < 0:
