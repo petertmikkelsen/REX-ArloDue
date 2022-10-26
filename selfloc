@@ -33,7 +33,7 @@ class Particle():
         self.y += math.sin(self.theta)*distance
 
     def turn(self, degrees, right = True):
-        degrees += random.random()*0.5+(random.randint(-5, 4)*7.5*degrees)
+        degrees += random.random()*0.5+(random.randint(-5, 4)*0.0075*degrees)
         self.theta += (int(right)*2-1)*degrees
         
     def getdist(self, x, y):
