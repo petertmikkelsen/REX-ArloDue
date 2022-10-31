@@ -130,8 +130,8 @@ myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
     myparticles[i].initialize(300, 300)
-    thetadiff = myparticles[i].getthetadiff(90,90)
-    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(thetadiff)
+    diff = myparticles[i].getthetadiff(90,90)
+    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(diff)
     
 
 #indsæt opstart
