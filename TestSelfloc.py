@@ -49,8 +49,7 @@ class Particle():
         specialdot = vectorlandmark[0]*(-vectortheta[1])+vectorlandmark[1]*vectortheta[0]
         return (180*math.acos(test/self.getdist(x, y))/math.pi) * (2*(int(specialdot<0))-1)
 
-    def turntowardslandmark(self, x, y):
-        thetadiff = getthetadiff(self, x, y)
+    def turntowardslandmark(thetadiff):
         if (thetadiff < 0):
             return 360+thetadiff
         else:
@@ -131,7 +130,9 @@ myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
     myparticles[i].initialize(300, 300)
-    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark
+    thetadiff = myparticles[i].getthetadiff(90,90)
+    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(90, 90, thetadiff)
+    
 
 #indsæt opstart
 
