@@ -37,16 +37,17 @@ class Particle():
         self.x = random.random()+random.randint(minX, maxX-1)
         self.y = random.random()+random.randint(minY, maxY-1)
         self.theta = random.random()+random.randint(0, 359)
+        
     
     def move(self, distance):
-        distance += random.random()+(random.randint(-5, 4)*0.01*distance)
+        distance += random.random()+(random.randint(-5, 4)*0.1*distance)
         self.x += math.sin(math.radians(self.theta))*distance*100
         self.y += math.cos(math.radians(self.theta))*distance*100
 
     def turn(self, degrees, right = True):
         if degrees < 0:
             right = not(right)
-        degrees += random.random()*0.5+(random.randint(-5, 4)*0.0075*degrees)
+        degrees += (random.random()+random.randint(-5, 4))*0.0075*degrees
         self.theta = np.mod((self.theta + (int(right)*2-1)*degrees), 360)
         
     def getdist(self, x, y):
@@ -58,6 +59,12 @@ class Particle():
         test = np.dot(vectortheta, vectorlandmark)
         specialdot = vectorlandmark[0]*(-vectortheta[1])+vectorlandmark[1]*vectortheta[0]
         return (180*math.acos(test/self.getdist(x, y))/math.pi) * (2*(int(specialdot<0))-1)
+
+    def turntowardslandmark(self, thetadiff):
+        if (thetadiff < 0):
+            return 360+thetadiff
+        else:
+            return thetadiff
 
 def estimate_pose(particles_list):
     """Estimate the pose from particles by computing the average position and orientation over all particles. 
@@ -86,20 +93,11 @@ def estimate_pose(particles_list):
     return Particle(x, y, theta)
 
 
-particlenumber = 10000
-myparticles = np.zeros(particlenumber, dtype=Particle)
-for i in range(particlenumber):
-    myparticles[i] = Particle()
-    myparticles[i].initialize(300, 300)
-#95% konfidensinterval for drejning er +- 2.5%
-#95% konfidensinterval for kørsel er +- 5%
-#robot = getArlo()
-
 def getweightsdist(particles, dist, thetadiff, landmarkid):
     landmark = landmarklocs[landmarkid]
     weights = np.zeros(len(particles))
     for i in range(particlenumber):
-        weights[i] = max(0.000000001, norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*8.5))
+        weights[i] = max(0.000000001, norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*0.085))
     weights = weights/np.sum(weights)
     return getweightstheta(particles, thetadiff, landmarkid, weights)
 
@@ -188,16 +186,13 @@ def draw_world(est_pose, particles, world):
     cv2.circle(world, a, 5, CMAGENTA, 2)
     cv2.line(world, a, b, CMAGENTA, 2)
 
-
-
-def initialize_particles(num_particles):
-    particles = []
-    for i in range(num_particles):
-        # Random starting points. 
-        p = particle.Particle(600.0*np.random.ranf() - 100.0, 600.0*np.random.ranf() - 250.0, np.mod(2.0*np.pi*np.random.ranf(), 2.0*np.pi), 1.0/num_particles)
-        particles.append(p)
-
-    return particles
+particlenumber = 10000 #skift om nødvendigt
+myparticles = np.zeros(particlenumber, dtype=Particle)
+for i in range(particlenumber):
+    myparticles[i] = Particle()
+    myparticles[i].initialize(300, 300)
+    diff = myparticles[i].getthetadiff(90,90)
+    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(diff)
 
 world = np.zeros((600,500,3), dtype=np.uint8)
 
@@ -206,26 +201,34 @@ if showGUI:
     cv2.namedWindow(WIN_World)
     cv2.moveWindow(WIN_World, 500, 50)
 
-for i in list(landmarklocs.values()):
+for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
+        
+        draw_world(bestparticle, particles, world)
+        
+        if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
+           print("im breaking free")
+           break
         print("before driving")
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
         print("theta: " + str(bestparticle.theta))
-        (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1])
+        (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1], maxdrive=2, compensate=False)
         for j in myparticles:
             j.turn(turnangle)
             j.move(distance)
+        print("turned: " + str(turnangle))
+        print("drove: " + str(distance))
         bestparticle = estimate_pose(myparticles)
         print("after driving")
-        print("x: " + str(myparticles[0].x))
-        print("y: " + str(myparticles[0].y))
-        print("theta: " + str(myparticles[0].theta))        
-        if bestparticle.getdist(i[0], i[1])<0.5:
+        print("x: " + str(bestparticle.x))
+        print("y: " + str(bestparticle.y))
+        print("theta: " + str(bestparticle.theta))        
+        if abs(bestparticle.x-i[0])<40 and abs(bestparticle.y-i[1])<40:
             print("im breaking free")
             break
         if True in pings:
@@ -254,11 +257,8 @@ for i in list(landmarklocs.values()):
                     j.turn(45 - 90*int(left))
                     j.move(distance)
                     
-        if showGUI:
+         if showGUI:
             cv2.imshow(WIN_World, world)
-
     
-
-
 arlo.Turn(degrees = 360)
 arlo.Turn(True, 360)
