@@ -131,7 +131,7 @@ for i in range(particlenumber):
     myparticles[i] = Particle()
     myparticles[i].initialize(300, 300)
     thetadiff = myparticles[i].getthetadiff(90,90)
-    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(90, 90, thetadiff)
+    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(thetadiff)
     
 
 #indsæt opstart
