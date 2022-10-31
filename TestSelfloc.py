@@ -49,6 +49,13 @@ class Particle():
         specialdot = vectorlandmark[0]*(-vectortheta[1])+vectorlandmark[1]*vectortheta[0]
         return (180*math.acos(test/self.getdist(x, y))/math.pi) * (2*(int(specialdot<0))-1)
 
+    def turntowardslandmark(self, x, y):
+        thetadiff = getthetadiff(self, x, y)
+        if (thetadiff < 0):
+            return 360+thetadiff
+        else:
+            return thetadiff
+
 def estimate_pose(particles_list):
     """Estimate the pose from particles by computing the average position and orientation over all particles. 
     This is not done using the particle weights, but just the sample distribution."""
@@ -124,6 +131,7 @@ myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
     myparticles[i].initialize(300, 300)
+    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark
 
 #indsæt opstart
 
