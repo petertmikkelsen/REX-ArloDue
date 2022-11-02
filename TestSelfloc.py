@@ -202,11 +202,17 @@ for i in range(particlenumber):
     
 
 #indsæt opstart
+world = np.zeros((600,500,3), dtype=np.uint8)
 
+if showGUI:
+    WIN_World = "World view"
+    cv2.namedWindow(WIN_World)
+    cv2.moveWindow(WIN_World, 500, 50)
+    
 for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
-        myparticles = updateloc(myparticles, landmarks)
+        myparticles = updateloc(myparticles, landmarks, world)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
