@@ -116,6 +116,56 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
+def jet(x):
+    """Colour map for drawing particles. This function determines the colour of 
+    a particle from its weight."""
+    r = (x >= 3.0/8.0 and x < 5.0/8.0) * (4.0 * x - 3.0/2.0) + (x >= 5.0/8.0 and x < 7.0/8.0) + (x >= 7.0/8.0) * (-4.0 * x + 9.0/2.0)
+    g = (x >= 1.0/8.0 and x < 3.0/8.0) * (4.0 * x - 1.0/2.0) + (x >= 3.0/8.0 and x < 5.0/8.0) + (x >= 5.0/8.0 and x < 7.0/8.0) * (-4.0 * x + 7.0/2.0)
+    b = (x < 1.0/8.0) * (4.0 * x + 1.0/2.0) + (x >= 1.0/8.0 and x < 3.0/8.0) + (x >= 3.0/8.0 and x < 5.0/8.0) * (-4.0 * x + 5.0/2.0)
+
+    return (255.0*r, 255.0*g, 255.0*b)
+
+def draw_world(est_pose, particles, world):
+    """Visualization.
+    This functions draws robots position in the world coordinate system."""
+    print("Drawing world!")
+    # Fix the origin of the coordinate system
+    offsetX = 0
+    offsetY = 0
+
+    # Constant needed for transforming from world coordinates to screen coordinates (flip the y-axis)
+    ymax = world.shape[0]
+
+    world[:] = CWHITE # Clear background to white
+
+    # Find largest weight
+    max_weight = 0
+    for particle in particles:
+        max_weight = max(max_weight, particle.weight)
+
+    # Draw particles
+    for particle in particles:
+        x = int(particle.x + offsetX)
+        y = ymax - (int(particle.y + offsetY))
+        colour = jet(particle.weight / max_weight)
+        cv2.circle(world, (x,y), 2, colour, 2)
+        b = (int(particle.x + 15.0*np.sin(math.radians(particle.theta)))+offsetX, 
+                                     ymax - (int(particle.y + 15.0*np.cos(math.radians(particle.theta)))+offsetY))
+        cv2.line(world, (x,y), b, colour, 2)
+
+    # Draw landmarks
+    for i in range(len(landmarks)):
+        ID = landmarks[i]
+        lm = (int(landmarklocs[ID][0] + offsetX), int(ymax - (landmarklocs[ID][1] + offsetY)))
+        cv2.circle(world, lm, 5, landmark_colors[i], 2)
+
+    # Draw estimated robot pose
+    a = (int(est_pose.x)+offsetX, ymax-(int(est_pose.y)+offsetY))
+    b = (int(est_pose.x + 15.0*np.sin(math.radians(est_pose.theta)))+offsetX, 
+                                 ymax-(int(est_pose.y + 15.0*np.cos(math.radians(est_pose.theta)))+offsetY))
+    cv2.circle(world, a, 5, CMAGENTA, 2)
+    cv2.line(world, a, b, CMAGENTA, 2)
+    
 def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
     inputlandmarks = copy.copy(targetlandmarks)
     for i in range(amountoflandmarks):
