@@ -136,7 +136,7 @@ for i in range(particlenumber):
 
 #indsæt opstart
 
-for i in list(landmarklocs.values()):
+for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
