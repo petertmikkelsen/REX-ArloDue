@@ -257,8 +257,8 @@ for i in [[90, 90]]+list(landmarklocs.values()):
                     j.turn(45 - 90*int(left))
                     j.move(distance)
                     
-         if showGUI:
-            cv2.imshow(WIN_World, world)
+        if showGUI:
+          cv2.imshow(WIN_World, world)
     
 arlo.Turn(degrees = 360)
 arlo.Turn(True, 360)
