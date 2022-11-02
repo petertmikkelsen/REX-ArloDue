@@ -200,6 +200,7 @@ if showGUI:
     WIN_World = "World view"
     cv2.namedWindow(WIN_World)
     cv2.moveWindow(WIN_World, 500, 50)
+    draw_world(bestparticle, myparticles, world)
 
 for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
@@ -207,8 +208,6 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
-        
-        draw_world(bestparticle, myparticles, world)
         
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
            print("im breaking free")
