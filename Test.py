@@ -150,8 +150,8 @@ def draw_world(est_pose, particles, world):
     This functions draws robots position in the world coordinate system."""
 
     # Fix the origin of the coordinate system
-    offsetX = 100
-    offsetY = 100
+    offsetX = 0
+    offsetY = 0
 
     # Constant needed for transforming from world coordinates to screen coordinates (flip the y-axis)
     ymax = world.shape[0]
@@ -169,7 +169,7 @@ def draw_world(est_pose, particles, world):
         y = ymax - (int(particle.y + offsetY))
         colour = jet(particle.weight / max_weight)
         cv2.circle(world, (x,y), 2, colour, 2)
-        b = (int(particle.x + 15.0*np.cos(math.radins(particle.theta)))+offsetX, 
+        b = (int(particle.x + 15.0*np.cos(math.radians(particle.theta)))+offsetX, 
                                      ymax - (int(particle.y + 15.0*np.sin(math.radians(particle.theta)))+offsetY))
         cv2.line(world, (x,y), b, colour, 2)
 
