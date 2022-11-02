@@ -19,7 +19,7 @@ CWHITE = (255, 255, 255)
 CBLACK = (0, 0, 0)
 
 landmarks = [1, 2, 3, 4]
-landmarklocs = {2: [100, 400], 3: [500, 100], 4: [500, 400], 1: [100, 100]}
+landmarklocs = {2: [90, 410], 3: [510, 90], 4: [510, 410], 1: [90, 90]}
 landmark_colors = [CRED, CGREEN, CBLUE, CBLACK] 
 
 def norm(x, mu, sigma):
@@ -123,6 +123,8 @@ def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
             j.turn(degreesturned)
         if ids is None:
             return particles
+        draw_world(bestparticle, myparticles, world)
+        cv2.imshow(WIN_World, world)
         print("found landmark id: " + str(ids))
         print("distance to landmark: " + str(dist*100+20))
         print("angle to landmark: " + str(angle))
@@ -205,9 +207,6 @@ for i in list(landmarklocs.values()):
         myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
-        
-        draw_world(bestparticle, myparticles, world)
-        cv2.imshow(WIN_World, world)
         
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
            print("im breaking free")
