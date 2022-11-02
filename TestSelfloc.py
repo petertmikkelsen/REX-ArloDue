@@ -21,6 +21,7 @@ CBLACK = (0, 0, 0)
 landmarks = [1, 2, 3, 4]
 landmarklocs = {2: [90, 410], 3: [510, 90], 4: [510, 410], 1: [90, 90]}
 landmark_colors = [CRED, CGREEN, CBLUE, CBLACK] 
+showGUI = True
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
@@ -128,6 +129,12 @@ def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
         print("angle to landmark: " + str(angle))
         print("degrees turned to find landmark: " + str(degreesturned))
         particles = getweightsdist(particles, dist*100+20, -angle, ids)
+        
+        if showGUI:
+            bestparticle = estimate_pose(particles)
+            draw_world(bestparticle, myparticles, world)
+            cv2.imshow(WIN_World, world)
+            
         if maxturn is not None:
             maxturn -= degreesturned
             if 0 > maxturn:
@@ -166,6 +173,9 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         print("turned: " + str(turnangle))
         print("drove: " + str(distance))
         bestparticle = estimate_pose(myparticles)
+        if showGUI:
+            draw_world(bestparticle, myparticles, world)
+            cv2.imshow(WIN_World, world)
         print("after driving")
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
