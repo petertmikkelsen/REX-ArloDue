@@ -148,7 +148,7 @@ def jet(x):
 def draw_world(est_pose, particles, world):
     """Visualization.
     This functions draws robots position in the world coordinate system."""
-
+    print("Drawing world!")
     # Fix the origin of the coordinate system
     offsetX = 0
     offsetY = 0
