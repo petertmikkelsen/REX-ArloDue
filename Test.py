@@ -123,14 +123,14 @@ def updateloc(particles, targetlandmarks, world, maxturn = 360, amountoflandmark
             j.turn(degreesturned)
         if ids is None:
             return particles
-        bestparticle = estimate_pose(particles)
-        draw_world(bestparticle, myparticles, world)
-        cv2.imshow(WIN_World, world)
         print("found landmark id: " + str(ids))
         print("distance to landmark: " + str(dist*100+20))
         print("angle to landmark: " + str(angle))
         print("degrees turned to find landmark: " + str(degreesturned))
         particles = getweightsdist(particles, dist*100+20, -angle, ids)
+        bestparticle = estimate_pose(particles)
+        draw_world(bestparticle, myparticles, world)
+        cv2.imshow(WIN_World, world)
         if maxturn is not None:
             maxturn -= degreesturned
             if 0 > maxturn:
