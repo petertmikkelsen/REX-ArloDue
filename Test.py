@@ -7,7 +7,6 @@ import FindLandmark
 from time import sleep
 import copy
 
-#Hey
 arlo = RobotDue.Robot()
 
 CRED = (0, 0, 255)
