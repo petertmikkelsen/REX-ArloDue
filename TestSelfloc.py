@@ -9,7 +9,6 @@ import copy
 
 arlo = RobotDue.Robot()
 
-#Hey
 landmarks = [1, 2, 3, 4]
 landmarklocs = {2: [90, 410], 3: [510, 90], 4: [510, 410], 1: [90, 90]}
 
