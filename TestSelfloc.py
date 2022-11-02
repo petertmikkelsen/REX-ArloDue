@@ -86,7 +86,7 @@ def getweightsdist(particles, dist, thetadiff, landmarkid):
     landmark = landmarklocs[landmarkid]
     weights = np.zeros(len(particles))
     for i in range(particlenumber):
-        weights[i] = max(0.000000000000001, norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*0.085))
+        weights[i] = max(0.000000001, norm(dist, particles[i].getdist(landmark[0], landmark[1]), dist*0.085))
     weights = weights/np.sum(weights)
     return getweightstheta(particles, thetadiff, landmarkid, weights)
 
@@ -95,7 +95,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
     weights = np.zeros(len(particles))
     landmark = landmarklocs[landmarkid]
     for i in range(particlenumber):
-        weights[i] = max(0.000000000000001, norm(thetadiff, particles[i].getthetadiff(landmark[0], landmark[1]), 16))
+        weights[i] = max(0.000000001, norm(thetadiff, particles[i].getthetadiff(landmark[0], landmark[1]), 16))
     weights = weights*oldweights
     weights = weights/np.sum(weights)
     for i in range(len(particles)):
@@ -105,9 +105,9 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
-def updateloc(particles, targetlandmarks, maxturn = 360):
+def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 2):
     inputlandmarks = copy.copy(targetlandmarks)
-    for i in range(len(targetlandmarks)):
+    for i in range(amountoflandmarks):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
         for i in particles:
             i.turn(degreesturned)
@@ -136,7 +136,7 @@ for i in range(particlenumber):
 
 #indsæt opstart
 
-for i in [[90, 90]]+list(landmarklocs.values()):
+for i in list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
