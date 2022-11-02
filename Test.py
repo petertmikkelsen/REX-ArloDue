@@ -1,4 +1,4 @@
-import cv2
+#import cv2
 import math
 import numpy as np
 import random
@@ -21,6 +21,7 @@ CBLACK = (0, 0, 0)
 landmarks = [1, 2, 3, 4]
 landmarklocs = {2: [90, 410], 3: [510, 90], 4: [510, 410], 1: [90, 90]}
 landmark_colors = [CRED, CGREEN, CBLUE, CBLACK] 
+showGUI = True
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
@@ -39,7 +40,7 @@ class Particle():
         
     
     def move(self, distance):
-        distance += random.random()+(random.randint(-1, 1)*0.1*distance)
+        distance += random.random()+(random.randint(-5, 4)*0.1*distance)
         self.x += math.sin(math.radians(self.theta))*distance*100
         self.y += math.cos(math.radians(self.theta))*distance*100
 
@@ -58,12 +59,6 @@ class Particle():
         test = np.dot(vectortheta, vectorlandmark)
         specialdot = vectorlandmark[0]*(-vectortheta[1])+vectorlandmark[1]*vectortheta[0]
         return (180*math.acos(test/self.getdist(x, y))/math.pi) * (2*(int(specialdot<0))-1)
-
-    def turntowardslandmark(self, thetadiff):
-        if (thetadiff < 0):
-            return 360+thetadiff
-        else:
-            return thetadiff
 
 def estimate_pose(particles_list):
     """Estimate the pose from particles by computing the average position and orientation over all particles. 
@@ -115,29 +110,6 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
-def updateloc(particles, targetlandmarks, world, maxturn = 360, amountoflandmarks = 3):
-    inputlandmarks = copy.copy(targetlandmarks)
-    for i in range(amountoflandmarks):
-        ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
-        for j in particles:
-            j.turn(degreesturned)
-        if ids is None:
-            return particles
-        print("found landmark id: " + str(ids))
-        print("distance to landmark: " + str(dist*100+20))
-        print("angle to landmark: " + str(angle))
-        print("degrees turned to find landmark: " + str(degreesturned))
-        particles = getweightsdist(particles, dist*100+20, -angle, ids)
-        bestparticle = estimate_pose(particles)
-        draw_world(bestparticle, myparticles, world)
-        cv2.imshow(WIN_World, world)
-        if maxturn is not None:
-            maxturn -= degreesturned
-            if 0 > maxturn:
-                return particles
-        inputlandmarks.remove(ids)
-    return particles
-
 def jet(x):
     """Colour map for drawing particles. This function determines the colour of 
     a particle from its weight."""
@@ -188,27 +160,52 @@ def draw_world(est_pose, particles, world):
     cv2.circle(world, a, 5, CMAGENTA, 2)
     cv2.line(world, a, b, CMAGENTA, 2)
 
+def updateloc(particles, targetlandmarks, maxturn = 360):
+    inputlandmarks = copy.copy(targetlandmarks)
+    for i in range(len(targetlandmarks)):
+        ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
+        for i in particles:
+            i.turn(degreesturned)
+        if ids is None:
+            return particles
+        print("found landmark id: " + str(ids))
+        print("distance to landmark: " + str(dist*100+20))
+        print("angle to landmark: " + str(angle))
+        print("degrees turned to find landmark: " + str(degreesturned))
+        particles = getweightsdist(particles, dist*100+20, -angle, ids)
+        
+        if showGUI:
+            bestparticle = estimate_pose(particles)
+            draw_world(bestparticle, myparticles, world)
+            cv2.imshow(WIN_World, world)
+        
+        if maxturn is not None:
+            maxturn -= degreesturned
+            if 0 > maxturn:
+                return particles
+        inputlandmarks.remove(ids)
+    return particles
+
 particlenumber = 10000 #skift om nødvendigt
 myparticles = np.zeros(particlenumber, dtype=Particle)
 for i in range(particlenumber):
     myparticles[i] = Particle()
     myparticles[i].initialize(300, 300)
-    diff = myparticles[i].getthetadiff(90,90)
-    myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(diff)
 
+#indsæt opstart
 world = np.zeros((600,600,3), dtype=np.uint8)
 
-WIN_World = "World view"
-cv2.namedWindow(WIN_World)
-cv2.moveWindow(WIN_World, 500, 50)
+if showGUI:
+    WIN_World = "World view"
+    cv2.namedWindow(WIN_World)
+    cv2.moveWindow(WIN_World, 500, 50)
 
-for i in list(landmarklocs.values()):
+for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
-        myparticles = updateloc(myparticles, landmarks, world)
+        myparticles = updateloc(myparticles, landmarks)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
-        
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
            print("im breaking free")
            break
@@ -223,14 +220,14 @@ for i in list(landmarklocs.values()):
         print("turned: " + str(turnangle))
         print("drove: " + str(distance))
         bestparticle = estimate_pose(myparticles)
+        if showGUI:
+            draw_world(bestparticle, myparticles, world)
+            cv2.imshow(WIN_World, world)
+            
         print("after driving")
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
-        print("theta: " + str(bestparticle.theta))
-        
-        draw_world(bestparticle, myparticles, world)
-        cv2.imshow(WIN_World, world)
-        
+        print("theta: " + str(bestparticle.theta))        
         if abs(bestparticle.x-i[0])<40 and abs(bestparticle.y-i[1])<40:
             print("im breaking free")
             break
@@ -259,7 +256,9 @@ for i in list(landmarklocs.values()):
                 for j in myparticles:
                     j.turn(45 - 90*int(left))
                     j.move(distance)
-                    
+
     
+
+
 arlo.Turn(degrees = 360)
 arlo.Turn(True, 360)
