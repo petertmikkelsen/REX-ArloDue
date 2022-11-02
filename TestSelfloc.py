@@ -202,7 +202,7 @@ for i in range(particlenumber):
     
 
 #indsæt opstart
-world = np.zeros((600,500,3), dtype=np.uint8)
+world = np.zeros((600,600,3), dtype=np.uint8)
 
 if showGUI:
     WIN_World = "World view"
