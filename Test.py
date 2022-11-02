@@ -171,8 +171,8 @@ def draw_world(est_pose, particles, world):
         y = ymax - (int(particle.y + offsetY))
         colour = jet(particle.weight / max_weight)
         cv2.circle(world, (x,y), 2, colour, 2)
-        b = (int(particle.x + 15.0*np.cos(math.radians(particle.theta)))+offsetX, 
-                                     ymax - (int(particle.y + 15.0*np.sin(math.radians(particle.theta)))+offsetY))
+        b = (int(particle.x + 15.0*np.sin(math.radians(particle.theta)))+offsetX, 
+                                     ymax - (int(particle.y + 15.0*np.cos(math.radians(particle.theta)))+offsetY))
         cv2.line(world, (x,y), b, colour, 2)
 
     # Draw landmarks
@@ -183,8 +183,8 @@ def draw_world(est_pose, particles, world):
 
     # Draw estimated robot pose
     a = (int(est_pose.x)+offsetX, ymax-(int(est_pose.y)+offsetY))
-    b = (int(est_pose.x + 15.0*np.cos(math.radians(est_pose.theta)))+offsetX, 
-                                 ymax-(int(est_pose.y + 15.0*np.sin(math.radians(est_pose.theta)))+offsetY))
+    b = (int(est_pose.x + 15.0*np.sin(math.radians(est_pose.theta)))+offsetX, 
+                                 ymax-(int(est_pose.y + 15.0*np.cos(math.radians(est_pose.theta)))+offsetY))
     cv2.circle(world, a, 5, CMAGENTA, 2)
     cv2.line(world, a, b, CMAGENTA, 2)
 
