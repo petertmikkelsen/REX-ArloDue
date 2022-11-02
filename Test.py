@@ -149,8 +149,8 @@ def draw_world(est_pose, particles, world):
     This functions draws robots position in the world coordinate system."""
     print("Drawing world!")
     # Fix the origin of the coordinate system
-    offsetX = 0
-    offsetY = 0
+    offsetX = 100
+    offsetY = 100
 
     # Constant needed for transforming from world coordinates to screen coordinates (flip the y-axis)
     ymax = world.shape[0]
@@ -193,7 +193,7 @@ for i in range(particlenumber):
     diff = myparticles[i].getthetadiff(90,90)
     myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(diff)
 
-world = np.zeros((600,500,3), dtype=np.uint8)
+world = np.zeros((500,500,3), dtype=np.uint8)
 
 WIN_World = "World view"
 cv2.namedWindow(WIN_World)
@@ -229,6 +229,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         print("theta: " + str(bestparticle.theta))
         
         draw_world(bestparticle, myparticles, world)
+        cv2.imshow(WIN_World, world)
         
         if abs(bestparticle.x-i[0])<40 and abs(bestparticle.y-i[1])<40:
             print("im breaking free")
