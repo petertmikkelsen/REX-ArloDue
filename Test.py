@@ -210,8 +210,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         
         if showGUI:
             draw_world(bestparticle, myparticles, world)
-        if showGUI:
-          cv2.imshow(WIN_World, world)
+            cv2.imshow(WIN_World, world)
         
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
            print("im breaking free")
