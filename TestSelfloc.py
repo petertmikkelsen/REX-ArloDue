@@ -9,8 +9,18 @@ import copy
 
 arlo = RobotDue.Robot()
 
+CRED = (0, 0, 255)
+CGREEN = (0, 255, 0)
+CBLUE = (255, 0, 0)
+CCYAN = (255, 255, 0)
+CYELLOW = (0, 255, 255)
+CMAGENTA = (255, 0, 255)
+CWHITE = (255, 255, 255)
+CBLACK = (0, 0, 0)
+
 landmarks = [1, 2, 3, 4]
 landmarklocs = {2: [90, 410], 3: [510, 90], 4: [510, 410], 1: [90, 90]}
+landmark_colors = [CRED, CGREEN, CBLUE, CBLACK] 
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
