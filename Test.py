@@ -21,7 +21,6 @@ CBLACK = (0, 0, 0)
 landmarks = [1, 2, 3, 4]
 landmarklocs = {2: [100, 400], 3: [500, 100], 4: [500, 400], 1: [100, 100]}
 landmark_colors = [CRED, CGREEN, CBLUE, CBLACK] 
-showGUI = True
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
@@ -196,10 +195,9 @@ for i in range(particlenumber):
 
 world = np.zeros((500,500,3), dtype=np.uint8)
 
-if showGUI:
-    WIN_World = "World view"
-    cv2.namedWindow(WIN_World)
-    cv2.moveWindow(WIN_World, 500, 50)
+WIN_World = "World view"
+cv2.namedWindow(WIN_World)
+cv2.moveWindow(WIN_World, 500, 50)
 
 for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
@@ -208,9 +206,8 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         
-        if showGUI:
-            draw_world(bestparticle, myparticles, world)
-            cv2.imshow(WIN_World, world)
+        draw_world(bestparticle, myparticles, world)
+        cv2.imshow(WIN_World, world)
         
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
            print("im breaking free")
