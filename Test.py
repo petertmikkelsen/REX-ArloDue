@@ -226,7 +226,10 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         print("after driving")
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
-        print("theta: " + str(bestparticle.theta))        
+        print("theta: " + str(bestparticle.theta))
+        
+        draw_world(bestparticle, myparticles, world)
+        
         if abs(bestparticle.x-i[0])<40 and abs(bestparticle.y-i[1])<40:
             print("im breaking free")
             break
