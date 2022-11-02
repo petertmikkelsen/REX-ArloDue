@@ -208,7 +208,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         
-        draw_world(bestparticle, particles, world)
+        draw_world(bestparticle, myparticles, world)
         
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
            print("im breaking free")
