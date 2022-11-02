@@ -115,7 +115,7 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
-def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
+def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3, world):
     inputlandmarks = copy.copy(targetlandmarks)
     for i in range(amountoflandmarks):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
@@ -123,6 +123,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
             j.turn(degreesturned)
         if ids is None:
             return particles
+        bestparticle = estimate_pose(particles)
         draw_world(bestparticle, myparticles, world)
         cv2.imshow(WIN_World, world)
         print("found landmark id: " + str(ids))
@@ -204,7 +205,7 @@ cv2.moveWindow(WIN_World, 500, 50)
 for i in list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
-        myparticles = updateloc(myparticles, landmarks)
+        myparticles = updateloc(myparticles, landmarks, world)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         
