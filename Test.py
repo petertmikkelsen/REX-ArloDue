@@ -39,7 +39,7 @@ class Particle():
         
     
     def move(self, distance):
-        distance += random.random()+(random.randint(-5, 4)*0.1*distance)
+        distance += random.random()+(random.randint(-1, 1)*0.1*distance)
         self.x += math.sin(math.radians(self.theta))*distance*100
         self.y += math.cos(math.radians(self.theta))*distance*100
 
@@ -119,8 +119,8 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
     inputlandmarks = copy.copy(targetlandmarks)
     for i in range(len(targetlandmarks)):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
-        for i in particles:
-            i.turn(degreesturned)
+        for j in particles:
+            j.turn(degreesturned)
         if ids is None:
             return particles
         print("found landmark id: " + str(ids))
