@@ -194,7 +194,7 @@ for i in range(particlenumber):
     diff = myparticles[i].getthetadiff(90,90)
     myparticles[i].theta = myparticles[i].theta + myparticles[i].turntowardslandmark(diff)
 
-world = np.zeros((600,500,3), dtype=np.uint8)
+world = np.zeros((500,500,3), dtype=np.uint8)
 
 if showGUI:
     WIN_World = "World view"
