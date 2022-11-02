@@ -105,9 +105,9 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
-def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
+def updateloc(particles, targetlandmarks, maxturn = 360):
     inputlandmarks = copy.copy(targetlandmarks)
-    for i in range(amountoflandmarks):
+    for i in range(len(targetlandmarks)):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
         for i in particles:
             i.turn(degreesturned)
