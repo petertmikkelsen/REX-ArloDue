@@ -166,7 +166,7 @@ def draw_world(est_pose, particles, world):
     cv2.circle(world, a, 5, CMAGENTA, 2)
     cv2.line(world, a, b, CMAGENTA, 2)
     
-def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
+def updateloc(particles, targetlandmarks, world, maxturn = 360, amountoflandmarks = 3):
     inputlandmarks = copy.copy(targetlandmarks)
     for i in range(amountoflandmarks):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
