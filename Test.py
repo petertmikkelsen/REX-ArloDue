@@ -115,9 +115,9 @@ def getweightstheta(particles, thetadiff, landmarkid, oldweights):
         newparticles[i] = copy.deepcopy(np.random.choice(particles, p=weights))
     return newparticles
 
-def updateloc(particles, targetlandmarks, maxturn = 360):
+def updateloc(particles, targetlandmarks, maxturn = 360, amountoflandmarks = 3):
     inputlandmarks = copy.copy(targetlandmarks)
-    for i in range(len(targetlandmarks)):
+    for i in range(amountoflandmarks):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
         for j in particles:
             j.turn(degreesturned)
@@ -199,7 +199,7 @@ WIN_World = "World view"
 cv2.namedWindow(WIN_World)
 cv2.moveWindow(WIN_World, 500, 50)
 
-for i in [[90, 90]]+list(landmarklocs.values()):
+for i in list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
         myparticles = updateloc(myparticles, landmarks)
