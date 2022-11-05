@@ -221,7 +221,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
         print("theta: " + str(bestparticle.theta))
-        (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1], maxdrive=2, compensate=False)
+        (pings, distance), turnangle = arlo.gotowards(bestparticle.x, bestparticle.y, bestparticle.theta, i[0], i[1], maxdrive=2, compensate=True)
         for j in myparticles:
             j.turn(turnangle)
             j.move(distance)
