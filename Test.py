@@ -257,10 +257,12 @@ for i in [[90, 90]]+list(landmarklocs.values()):
                     j.turn(-turning)
                     j.move(distance)
             elif pings[0]:
+                arlo.Reverse(0.1)
                 left = bestparticle.getthetadiff(300, 250)>0
                 arlo.Turn(left, 110)
                 pings, distance = arlo.Forward(0.5, compensate=True, ping=True)
                 for j in myparticles:
+                    j.move(-0.1)
                     j.turn(110 - 220*int(left))
                     j.move(distance)
 
