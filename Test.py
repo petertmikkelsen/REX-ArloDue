@@ -243,7 +243,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
             turning = 45
             if pings[1] and not pings[2]:
                 if arlo.read_sensor(3)<500:
-                    turning = 30
+                    turning = 15
                 arlo.Turn(False, turning)
                 pings, distance = arlo.Forward(0.5, compensate=True, ping=True)
                 for j in myparticles:
@@ -251,7 +251,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
                     j.move(distance)
             elif pings[2] and not pings[1]:
                 if arlo.read_sensor(2)<500:
-                    turning = 30
+                    turning = 15
                 arlo.Turn(True, turning)
                 pings, distance = arlo.Forward(0.5, compensate=True, ping=True)
                 for j in myparticles:
@@ -259,7 +259,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
                     j.move(distance)
             elif pings[0]:
                 left = bestparticle.getthetadiff(300, 250)>0
-                arlo.Turn(left, 45)
+                arlo.Turn(left, 90)
                 pings, distance = arlo.Forward(0.5, compensate=True, ping=True)
                 for j in myparticles:
                     j.turn(90 - 180*int(left))
