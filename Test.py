@@ -40,14 +40,14 @@ class Particle():
         
     
     def move(self, distance):
-        distance += random.random()+(random.randint(-1, 1)*0.1*distance)
+        distance += random.random()+(random.randint(-4, 5)*000.1*distance)
         self.x += math.sin(math.radians(self.theta))*distance*100
         self.y += math.cos(math.radians(self.theta))*distance*100
 
     def turn(self, degrees, right = True):
         if degrees < 0:
             right = not(right)
-        degrees += (random.random()+random.randint(-5, 4))*0.0075*degrees
+        degrees += (random.random()+random.randint(-5, 4))*0.000075*degrees
         self.theta = np.mod((self.theta + (int(right)*2-1)*degrees), 360)
         
     def getdist(self, x, y):
