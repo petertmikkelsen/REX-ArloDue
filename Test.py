@@ -176,7 +176,7 @@ def updateloc(particles, targetlandmarks, maxturn = 360):
         
         if showGUI:
             bestparticle = estimate_pose(particles)
-            draw_world(bestparticle, myparticles, world)
+            draw_world(bestparticle, particles, world)
             cv2.imshow(WIN_World, world)
         
         if maxturn is not None:
