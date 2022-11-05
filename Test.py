@@ -40,14 +40,14 @@ class Particle():
         
     
     def move(self, distance):
-        distance += random.random()+(random.randint(-5, 4)*000.1*distance)
+        distance += random.random()+(random.randint(-5, 4)*0.1*distance)
         self.x += math.sin(math.radians(self.theta))*distance*100
         self.y += math.cos(math.radians(self.theta))*distance*100
 
     def turn(self, degrees, right = True):
         if degrees < 0:
             right = not(right)
-        degrees += (random.random()+random.randint(-5, 4))*0.000075*degrees
+        degrees += (random.random()+random.randint(-5, 4))*0.0075*degrees
         self.theta = np.mod((self.theta + (int(right)*2-1)*degrees), 360)
         
     def getdist(self, x, y):
@@ -160,9 +160,9 @@ def draw_world(est_pose, particles, world):
     cv2.circle(world, a, 5, CMAGENTA, 2)
     cv2.line(world, a, b, CMAGENTA, 2)
 
-def updateloc(particles, targetlandmarks, maxturn = 360):
+def updateloc(particles, targetlandmarks, maxturn = 360, maxtargets = 4):
     inputlandmarks = copy.copy(targetlandmarks)
-    for i in range(len(targetlandmarks)):
+    for i in range(maxtargets):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
         for i in particles:
             i.turn(degreesturned)
@@ -203,7 +203,7 @@ if showGUI:
 for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
-        myparticles = updateloc(myparticles, landmarks)
+        myparticles = updateloc(myparticles, landmarks, maxtargets = 2)
         #potentielt brug sensor til at bestemme afstand
         bestparticle = estimate_pose(myparticles)
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
