@@ -47,6 +47,7 @@ class Particle():
     def turn(self, degrees, right = True):
         if degrees < 0:
             right = not(right)
+            degrees = -degrees
         degrees += (random.random()+random.randint(-5, 4))*0.0075*degrees
         self.theta = np.mod((self.theta + (int(right)*2-1)*degrees), 360)
         
