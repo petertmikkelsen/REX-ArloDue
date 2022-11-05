@@ -212,7 +212,7 @@ temp = True
 for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
-        if (True):
+        if (temp):
             myparticles = updateloc(myparticles, landmarks, maxtargets = 2)
             #potentielt brug sensor til at bestemme afstand
             bestparticle = estimate_pose(myparticles)
