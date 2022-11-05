@@ -140,7 +140,7 @@ class Robot(object):
         if compensate: #for some reason this might not work
             self.go_diff(42, 46, 0, 1)
             sleep(0.15)
-            print(self.stop())
+            self.stop()
             sleep(0.1) #wait .1 second before next command
         if distance > 0:  
             driving = False
@@ -153,14 +153,14 @@ class Robot(object):
                             pings.append(self.read_sensor(i)<200*(1+int(i==0)))
                             sleep(0.03)
                         if True in pings:
-                            print(self.stop())
+                            self.stop()
                             return pings, (time.perf_counter()-start)/2.45
                     if not (driving):
                         driving = True
                         self.go_diff(powerLeft, powerRight, 1, 1)
                         sleep(0.03)
                 else:
-                    print(self.stop())
+                    self.stop()
                     return [False, False, False], distance
     
     def Turn(self, Left=True, degrees=90, speed=1, compensate = False):
@@ -207,13 +207,21 @@ class Robot(object):
             print(self.go_diff(0, 45, 1, 1))
             sleep(10.5)
             if stop:
-                print(self.stop())
+                self.stop()
         if not Left:
             print(self.go_diff(90, 45, 1, 1))
             sleep(6.2)
             if stop:
-                print(self.stop())
+                self.stop()
 
+    def Reverse(self, distance = 1, powerLeft = 64, powerRight = 70):
+        """drives forward. unless otherwise specified, will drive 1 meter, with compensation designed for ArloDue"""  
+        if distance > 0:  
+            self.go_diff(powerLeft, powerRight, -1, -1)
+            sleep(distance*2.45)
+            self.stop()             
+                
+                                
     def pings(self):
         return [self.read_sensor(0), self.read_sensor(1), self.read_sensor(2), self.read_sensor(3)] #front, back, left, right
 
