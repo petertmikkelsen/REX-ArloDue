@@ -208,15 +208,19 @@ if showGUI:
     cv2.namedWindow(WIN_World)
     cv2.moveWindow(WIN_World, 500, 50)
 
+temp = True
 for i in [[90, 90]]+list(landmarklocs.values()):
     print("going towards: " + str(i[0]) + ", " + str(i[1]))
     while (True):
-        myparticles = updateloc(myparticles, landmarks, maxtargets = 2)
-        #potentielt brug sensor til at bestemme afstand
-        bestparticle = estimate_pose(myparticles)
+        if (True):
+            myparticles = updateloc(myparticles, landmarks, maxtargets = 2)
+            #potentielt brug sensor til at bestemme afstand
+            bestparticle = estimate_pose(myparticles)
         if abs(bestparticle.x-i[0])<60 and abs(bestparticle.y-i[1])<60:
-           print("im breaking free")
-           break
+            print("im breaking free")
+            temp = False
+            break
+        temp = True
         print("before driving")
         print("x: " + str(bestparticle.x))
         print("y: " + str(bestparticle.y))
