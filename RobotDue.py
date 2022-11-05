@@ -194,7 +194,7 @@ class Robot(object):
             returning = turnangle
         elif turnangle<0:
             self.Turn(degrees = -turnangle, compensate=compensate)
-            returning = -turnangle
+            returning = turnangle
         sleep(0.2)
         return self.Forward(min(distance/100, maxdrive), ping=True), returning
         
