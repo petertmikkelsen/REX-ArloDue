@@ -217,7 +217,7 @@ class Robot(object):
     def Reverse(self, distance = 1, powerLeft = 64, powerRight = 70):
         """drives forward. unless otherwise specified, will drive 1 meter, with compensation designed for ArloDue"""  
         if distance > 0:  
-            self.go_diff(powerLeft, powerRight, -1, -1)
+            self.go_diff(powerLeft, powerRight, 0, 0)
             sleep(distance*2.45)
             self.stop()             
                 
