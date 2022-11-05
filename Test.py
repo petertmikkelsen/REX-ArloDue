@@ -237,9 +237,8 @@ for i in [[90, 90]]+list(landmarklocs.values()):
         print("y: " + str(bestparticle.y))
         print("theta: " + str(bestparticle.theta))        
         if abs(bestparticle.x-i[0])<40 and abs(bestparticle.y-i[1])<40:
-            print("im breaking free")
-            break
-        if True in pings:
+            print("I think I am there, but i will double check")
+        elif True in pings:
             turning = 45
             if pings[1] and not pings[2]:
                 if arlo.read_sensor(3)<500:
