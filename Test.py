@@ -164,11 +164,11 @@ def draw_world(est_pose, particles, world):
 def updateloc(particles, targetlandmarks, maxturn = 360, maxtargets = 4):
     inputlandmarks = copy.copy(targetlandmarks)
     k = 0
-    for i in range(7):
-        for j in range(6):
+    for i in range(14):
+        for j in range(12):
             particles[k].theta = random.random()+random.randint(0, 359)
-            particles[k].x = i*100
-            particles[k].y = j*100
+            particles[k].x = i*50
+            particles[k].y = j*50
             k += 1
     for i in range(maxtargets):
         ids, angle, dist, degreesturned = FindLandmark.FindLandmark(arlo, inputlandmarks, maxturn)
