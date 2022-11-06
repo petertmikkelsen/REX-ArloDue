@@ -21,7 +21,7 @@ CBLACK = (0, 0, 0)
 landmarks = [1, 2, 3, 4]
 landmarklocs = {2: [90, 410], 3: [510, 90], 4: [510, 410], 1: [90, 90]}
 landmark_colors = [CRED, CGREEN, CBLUE, CBLACK] 
-showGUI = True
+showGUI = False
 
 def norm(x, mu, sigma):
     return (1/(np.sqrt(2*np.pi)*sigma))*np.exp((-1/2)*(((x-mu)**2)/sigma**2))
