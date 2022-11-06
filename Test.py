@@ -164,8 +164,8 @@ def draw_world(est_pose, particles, world):
 def updateloc(particles, targetlandmarks, maxturn = 360, maxtargets = 4):
     inputlandmarks = copy.copy(targetlandmarks)
     k = 0
-    for i in range(14):
-        for j in range(12):
+    for i in range(15):
+        for j in range(13):
             particles[k].theta = random.random()+random.randint(0, 359)
             particles[k].x = i*50
             particles[k].y = j*50
