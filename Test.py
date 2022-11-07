@@ -271,13 +271,7 @@ for i in [[90, 90]]+list(landmarklocs.values()):
                 for j in myparticles:
                     j.move(-0.1)
                     j.turn(60 - 120*int(left))
-                    j.move(distance+0.2)
-            elif:
-                arlo.Forward(0.2, compensate=True, ping=False)
-                for j in myparticles:
-                    j.move(0.2)
-
-    
+                    j.move(distance+0.2)    
 
 
 arlo.Turn(degrees = 360)
